@@ -1,0 +1,6 @@
+scipy==1.0.0
+uncertainties==3.0.2
+sympy==1.1.1
+numpy==1.14.0
+pandas==0.20.1
+matplotlib==2.0.2

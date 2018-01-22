@@ -1,0 +1,50 @@
+##################################
+######Help file for RheoFC.py#####
+######by Karl Jan Clinckspoor#####
+######      IQ - Unicamp     #####
+######         2017          #####
+##################################
+
+This script was used to help fitting a large number of flow curves.
+
+1. Input file format.
+The main requirement is that the flow-curve files must be formatted in the following way:
+1.1. An arbitrary number of comment lines
+1.2. A line starting with a semicolon(;), before the data table.
+     It must contain the column names, which must have both Eta and GP in them.
+1.3. The data, separated by a semicolon(;)
+
+An example of a valid file is:
+;GP in 1/s;Tau in Pa;Eta in Pas;T in °C;t in s;t_seg in s;
+1|1; ;0,06978; ; ;17,86;7,239;
+1|2; ;0,09985; ; ;22,75;12,13;
+
+Note, however, that GP and Eta are empty. 
+This is because multiple experiments were ran at once, one after the other.
+However, the program ignores these blank data points and only adds what is necessary.
+
+Another example of a valid file:
+1|1; ;0,06978; ; ;17,86;7,239;
+1|2; ;0,09985; ; ;22,75;12,13;
+		...
+3|1;0,0009986;0,04055;40,61; ;245,4;33,01;
+3|2;0,002151;0,07458;34,68; ;278,6;66,18;
+
+Now, the columns contain the necessary data and fitting can continue.
+
+2. Fitting methodology
+The program can fit the data chosen by the user or automatically, the latter using one of two algorithms.
+
+1. Minimizing the fitting error
+2. Minimizing the fitting error divided by the number of points chosen.
+
+The second one will choose, on average, more points, so the result if more representative, but the error might be larger.
+
+3. Settings
+
+DEBUG: Set this to True to activate the debug messages in the program.
+SPYDER: Set this to True to assume there is inline representation of graphs, not separate windows.
+SORTING: Set this to either either 'by_error' or 'by_error_length', including the '', to select between the two automatic fitting methods.
+
+##################################################
+
