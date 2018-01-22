@@ -92,6 +92,6 @@ These graphs can also be saved as .png figures if wanted.
 
 If there was an Overflow error, or if the fitting algorithm wasn't able to determine one of the parameters, plotting won't be done and an error will be returned and logged.
 
-## Automatization
+## Automation
 
 There are two `main` functions in the script. The `main()` function uses the settings stored separately and asks you a few questions. The `main_simple()` function just treats all the data present in the current folder without asking anything, using the settings stored in the script. You can change the `if __name__ == '__main__'` section of the script to better suit your needs.
