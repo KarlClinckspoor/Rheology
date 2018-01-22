@@ -1,0 +1,1599 @@
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.1.12)  22 JAN 2018 11:41
+entering extended mode
+**./Tutorial.tex
+(Tutorial.tex
+LaTeX2e <2017-04-15>
+Babel <3.16> and hyphenation patterns for 75 language(s) loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+
+("C:\Program Files\MiKTeX 2.9\tex\xelatex\xetexconfig\geometry.cfg"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\fontspec\fontspec.sty"
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\l3packages\xparse\xparse.st
+y (C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\expl3.sty
+Package: expl3 2017/12/05 L3 programming layer (loader) 
+
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\expl3-code.tex
+Package: expl3 2017/12/05 L3 programming layer (code)
+\c_max_int=\count90
+\l_tmpa_int=\count91
+\l_tmpb_int=\count92
+\g_tmpa_int=\count93
+\g_tmpb_int=\count94
+\g__intarray_font_int=\count95
+\g__prg_map_int=\count96
+\c_log_iow=\count97
+\l_iow_line_count_int=\count98
+\l__iow_line_target_int=\count99
+\l__iow_one_indent_int=\count100
+\l__iow_indent_int=\count101
+\c_zero_dim=\dimen111
+\c_max_dim=\dimen112
+\l_tmpa_dim=\dimen113
+\l_tmpb_dim=\dimen114
+\g_tmpa_dim=\dimen115
+\g_tmpb_dim=\dimen116
+\c_zero_skip=\skip43
+\c_max_skip=\skip44
+\l_tmpa_skip=\skip45
+\l_tmpb_skip=\skip46
+\g_tmpa_skip=\skip47
+\g_tmpb_skip=\skip48
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count102
+\c__fp_leading_shift_int=\count103
+\c__fp_middle_shift_int=\count104
+\c__fp_trailing_shift_int=\count105
+\c__fp_big_leading_shift_int=\count106
+\c__fp_big_middle_shift_int=\count107
+\c__fp_big_trailing_shift_int=\count108
+\c__fp_Bigg_leading_shift_int=\count109
+\c__fp_Bigg_middle_shift_int=\count110
+\c__fp_Bigg_trailing_shift_int=\count111
+\l__sort_length_int=\count112
+\l__sort_min_int=\count113
+\l__sort_top_int=\count114
+\l__sort_max_int=\count115
+\l__sort_true_max_int=\count116
+\l__sort_block_int=\count117
+\l__sort_begin_int=\count118
+\l__sort_end_int=\count119
+\l__sort_A_int=\count120
+\l__sort_B_int=\count121
+\l__sort_C_int=\count122
+\l__tl_build_start_index_int=\count123
+\l__tl_build_index_int=\count124
+\l__tl_analysis_normal_int=\count125
+\l__tl_analysis_index_int=\count126
+\l__tl_analysis_nesting_int=\count127
+\l__tl_analysis_type_int=\count128
+\l__regex_internal_a_int=\count129
+\l__regex_internal_b_int=\count130
+\l__regex_internal_c_int=\count131
+\l__regex_balance_int=\count132
+\l__regex_group_level_int=\count133
+\l__regex_mode_int=\count134
+\c__regex_cs_in_class_mode_int=\count135
+\c__regex_cs_mode_int=\count136
+\l__regex_catcodes_int=\count137
+\l__regex_default_catcodes_int=\count138
+\c__regex_catcode_L_int=\count139
+\c__regex_catcode_O_int=\count140
+\c__regex_catcode_A_int=\count141
+\c__regex_all_catcodes_int=\count142
+\l__regex_show_lines_int=\count143
+\l__regex_min_state_int=\count144
+\l__regex_max_state_int=\count145
+\l__regex_left_state_int=\count146
+\l__regex_right_state_int=\count147
+\l__regex_capturing_group_int=\count148
+\l__regex_min_pos_int=\count149
+\l__regex_max_pos_int=\count150
+\l__regex_curr_pos_int=\count151
+\l__regex_start_pos_int=\count152
+\l__regex_success_pos_int=\count153
+\l__regex_curr_char_int=\count154
+\l__regex_curr_catcode_int=\count155
+\l__regex_last_char_int=\count156
+\l__regex_case_changed_char_int=\count157
+\l__regex_curr_state_int=\count158
+\l__regex_step_int=\count159
+\l__regex_min_active_int=\count160
+\l__regex_max_active_int=\count161
+\l__regex_replacement_csnames_int=\count162
+\l__regex_match_count_int=\count163
+\l__regex_min_submatch_int=\count164
+\l__regex_submatch_int=\count165
+\l__regex_zeroth_submatch_int=\count166
+\g__debug_trace_regex_int=\count167
+\c_empty_box=\box26
+\l_tmpa_box=\box27
+\l_tmpb_box=\box28
+\g_tmpa_box=\box29
+\g_tmpb_box=\box30
+\l__box_top_dim=\dimen117
+\l__box_bottom_dim=\dimen118
+\l__box_left_dim=\dimen119
+\l__box_right_dim=\dimen120
+\l__box_top_new_dim=\dimen121
+\l__box_bottom_new_dim=\dimen122
+\l__box_left_new_dim=\dimen123
+\l__box_right_new_dim=\dimen124
+\l__box_internal_box=\box31
+\l__coffin_internal_box=\box32
+\l__coffin_internal_dim=\dimen125
+\l__coffin_offset_x_dim=\dimen126
+\l__coffin_offset_y_dim=\dimen127
+\l__coffin_x_dim=\dimen128
+\l__coffin_y_dim=\dimen129
+\l__coffin_x_prime_dim=\dimen130
+\l__coffin_y_prime_dim=\dimen131
+\c_empty_coffin=\box33
+\l__coffin_aligned_coffin=\box34
+\l__coffin_aligned_internal_coffin=\box35
+\l_tmpa_coffin=\box36
+\l_tmpb_coffin=\box37
+\l__coffin_display_coffin=\box38
+\l__coffin_display_coord_coffin=\box39
+\l__coffin_display_pole_coffin=\box40
+\l__coffin_display_offset_dim=\dimen132
+\l__coffin_display_x_dim=\dimen133
+\l__coffin_display_y_dim=\dimen134
+\l__coffin_bounding_shift_dim=\dimen135
+\l__coffin_left_corner_dim=\dimen136
+\l__coffin_right_corner_dim=\dimen137
+\l__coffin_bottom_corner_dim=\dimen138
+\l__coffin_top_corner_dim=\dimen139
+\l__coffin_scaled_total_height_dim=\dimen140
+\l__coffin_scaled_width_dim=\dimen141
+)
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\l3xdvipdfmx.def
+File: l3xdvidpfmx.def 2017/03/18 v L3 Experimental driver: xdvipdfmx
+\g__driver_image_int=\count168
+\l__driver_tmp_box=\box41
+))
+Package: xparse 2017/12/05 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count169
+\g__xparse_grabber_int=\count170
+\l__xparse_m_args_int=\count171
+\l__xparse_mandatory_args_int=\count172
+\l__xparse_v_nesting_int=\count173
+)
+Package: fontspec 2017/11/09 v2.6g Font selection for XeLaTeX and LuaLaTeX
+("C:\Program Files\MiKTeX 2.9\tex\latex\fontspec\fontspec-xetex.sty"
+Package: fontspec-xetex 2017/11/09 v2.6g Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count174
+\l__fontspec_language_int=\count175
+\l__fontspec_strnum_int=\count176
+\l__fontspec_tmp_int=\count177
+\l__fontspec_em_int=\count178
+\l__fontspec_emdef_int=\count179
+\l__fontspec_strong_int=\count180
+\l__fontspec_strongdef_int=\count181
+\l__fontspec_tmpa_dim=\dimen142
+\l__fontspec_tmpb_dim=\dimen143
+\l__fontspec_tmpc_dim=\dimen144
+\g__file_internal_ior=\read1
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\tuenc.def"
+File: tuenc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TU on input line 82.
+))
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \fontspec with sig. 'O{}mO{}' on line 542.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setmainfont with sig. 'O{}mO{}' on line 546.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setsansfont with sig. 'O{}mO{}' on line 550.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setmonofont with sig. 'O{}mO{}' on line 554.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setmathrm with sig. 'O{}mO{}' on line 558.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setboldmathrm with sig. 'O{}mO{}' on line 562.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setmathsf with sig. 'O{}mO{}' on line 566.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setmathtt with sig. 'O{}mO{}' on line 570.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \setromanfont with sig. 'O{}mO{}' on line 574.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newfontfamily with sig. 'mO{}mO{}' on line 578.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newfontface with sig. 'mO{}mO{}' on line 582.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \defaultfontfeatures with sig. 't+om' on line 586.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \addfontfeatures with sig. 'm' on line 590.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \addfontfeature with sig. 'm' on line 594.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newfontfeature with sig. 'mm' on line 598.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newAATfeature with sig. 'mmmm' on line 602.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newopentypefeature with sig. 'mmm' on line 606.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newICUfeature with sig. 'mmm' on line 610.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \aliasfontfeature with sig. 'mm' on line 614.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \aliasfontfeatureoption with sig. 'mmm' on line 618.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newfontscript with sig. 'mm' on line 622.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newfontlanguage with sig. 'mm' on line 626.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareFontsExtensions with sig. 'm' on line 630.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \IfFontFeatureActiveTF with sig. 'mmm' on line 634.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \EncodingCommand with sig. 'mO{}m' on line 3632.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \EncodingAccent with sig. 'mm' on line 3638.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \EncodingSymbol with sig. 'mm' on line 3644.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \EncodingComposite with sig. 'mmm' on line 3650.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \EncodingCompositeCommand with sig. 'mmm' on line 3656.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareUnicodeEncoding with sig. 'mm' on line 3681.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \UndeclareSymbol with sig. 'm' on line 3687.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \UndeclareAccent with sig. 'm' on line 3693.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \UndeclareCommand with sig. 'm' on line 3699.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \UndeclareComposite with sig. 'mm' on line 3706.
+.................................................
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\fontspec\fontspec.cfg")
+LaTeX Info: Redefining \itshape on input line 3891.
+LaTeX Info: Redefining \slshape on input line 3896.
+LaTeX Info: Redefining \scshape on input line 3901.
+LaTeX Info: Redefining \upshape on input line 3906.
+LaTeX Info: Redefining \em on input line 3936.
+LaTeX Info: Redefining \emph on input line 3961.
+LaTeX Info: Redefining \- on input line 4015.
+.................................................
+. LaTeX info: "xparse/redefine-command"
+. 
+. Redefining command \oldstylenums with sig. 'm' on line 4110.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \liningnums with sig. 'm' on line 4114.
+.................................................
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\polyglossia\polyglossia.sty"
+Package: polyglossia 2015/03/25 v1.42.4 Alternative to Babel for XeLaTeX and Lu
+aLaTeX
+
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2017/11/22 v2.5 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count182
+)
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\makecmds\makecmds.sty
+Package: makecmds 2009/09/03 v1.0a extra command making commands
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+\XKV@toks=\toks16
+\XKV@tempa@toks=\toks17
+)
+\XKV@depth=\count183
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+\xpg@normalclass=\XeTeXcharclass1
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\polyglossia\gloss-brazil.ldf"
+File: gloss-brazil.ldf polyglossia: module for portuguese
+)
+Package polyglossia Info: Default language is brazil.
+Package polyglossia Info: Skipping automatic font setup for language brazil.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\polyglossia\gloss-english.ldf"
+File: gloss-english.ldf polyglossia: module for english
+)
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\csquotes\csquotes.sty
+Package: csquotes 2017/03/11 v5.2b context-sensitive quotations (JAW)
+\csq@reset=\count184
+\csq@gtype=\count185
+\csq@glevel=\count186
+\csq@qlevel=\count187
+\csq@maxlvl=\count188
+\csq@tshold=\count189
+\csq@ltx@everypar=\toks18
+
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\csquotes\csquotes.def
+File: csquotes.def 2017/03/11 v5.2b csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\csquotes\csquotes.cfg
+File: csquotes.cfg 
+))
+\g__fontspec_family_LatinModernRoman_int=\count190
+.................................................
+. fontspec info: "defining-font"
+. 
+. Font family 'LatinModernRoman(0)' created for font 'Latin Modern Roman' with
+. options [Ligatures=TeX,Ligatures=TeX].
+.  
+.  This font family consists of the following NFSS series/shapes:
+.  
+. - 'normal' (m/n) with NFSS spec.: <->"Latin Modern
+. Roman/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'small caps'  (m/sc) with NFSS spec.: 
+. - 'bold' (bx/n) with NFSS spec.: <->"Latin Modern
+. Roman/B/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'bold small caps'  (bx/sc) with NFSS spec.: 
+. - 'italic' (m/it) with NFSS spec.: <->"Latin Modern
+. Roman/I/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'italic small caps'  (m/itsc) with NFSS spec.: 
+. - 'bold italic' (bx/it) with NFSS spec.: <->"Latin Modern
+. Roman/BI/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
+.................................................
+LaTeX Info: Redefining \rmfamily on input line 11.
+\g__fontspec_family_LatinModernSans_int=\count191
+.................................................
+. fontspec info: "defining-font"
+. 
+. Font family 'LatinModernSans(0)' created for font 'Latin Modern Sans' with
+. options [Ligatures=TeX,Ligatures=TeX].
+.  
+.  This font family consists of the following NFSS series/shapes:
+.  
+. - 'normal' (m/n) with NFSS spec.: <->"Latin Modern
+. Sans/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'small caps'  (m/sc) with NFSS spec.: 
+. - 'bold' (bx/n) with NFSS spec.: <->"Latin Modern
+. Sans/B/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'bold small caps'  (bx/sc) with NFSS spec.: 
+. - 'italic' (m/it) with NFSS spec.: <->"Latin Modern
+. Sans/I/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'italic small caps'  (m/itsc) with NFSS spec.: 
+. - 'bold italic' (bx/it) with NFSS spec.: <->"Latin Modern
+. Sans/BI/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
+.................................................
+LaTeX Info: Redefining \sffamily on input line 12.
+\g__fontspec_family_LatinModernMono_int=\count192
+.................................................
+. fontspec info: "no-font-shape"
+. 
+. Could not resolve font "Latin Modern Mono/B" (it probably doesn't exist).
+.................................................
+.................................................
+. fontspec info: "defining-font"
+. 
+. Font family 'LatinModernMono(0)' created for font 'Latin Modern Mono' with
+. options [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=WordSpace].
+.  
+.  This font family consists of the following NFSS series/shapes:
+.  
+. - 'normal' (m/n) with NFSS spec.: <->"Latin Modern
+. Mono/OT:script=latn;language=DFLT;"
+. - 'small caps'  (m/sc) with NFSS spec.: 
+. and font adjustment code:
+. \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font =0\fontdimen 3\font
+. \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
+. \tex_hyphenchar:D \font =-1\scan_stop: 
+. - 'italic' (m/it) with NFSS spec.: <->"Latin Modern
+. Mono/I/OT:script=latn;language=DFLT;"
+. - 'italic small caps'  (m/itsc) with NFSS spec.: 
+. and font adjustment code:
+. \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font =0\fontdimen 3\font
+. \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
+. \tex_hyphenchar:D \font =-1\scan_stop: 
+. - 'bold italic' (bx/it) with NFSS spec.: <->"Latin Modern
+. Mono/BI/OT:script=latn;language=DFLT;"
+. - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
+. and font adjustment code:
+. \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font =0\fontdimen 3\font
+. \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
+. \tex_hyphenchar:D \font =-1\scan_stop: 
+.................................................
+LaTeX Info: Redefining \ttfamily on input line 13.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen145
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen146
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count193
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count194
+\leftroot@=\count195
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count196
+\DOTSCASE@=\count197
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box42
+\strutbox@=\box43
+\big@size=\dimen147
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count198
+\c@MaxMatrixCols=\count199
+\dotsspace@=\muskip16
+\c@parentequation=\count266
+\dspbrk@lvl=\count267
+\tag@help=\toks20
+\row@=\count268
+\column@=\count269
+\maxfields@=\count270
+\andhelp@=\toks21
+\eqnshift@=\dimen148
+\alignsep@=\dimen149
+\tagshift@=\dimen150
+\tagwidth@=\dimen151
+\totwidth@=\dimen152
+\lineht@=\dimen153
+\@envbody=\toks22
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\xetex.def"
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks24
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 99.
+)
+\Gin@req@height=\dimen154
+\Gin@req@width=\dimen155
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count271
+\float@exts=\toks25
+\float@box=\box44
+\@float@everytoks=\toks26
+\@floatcapt=\box45
+)
+\@float@every@table=\toks27
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip52
+\LTright=\skip53
+\LTpre=\skip54
+\LTpost=\skip55
+\LTchunksize=\count272
+\LTcapwidth=\dimen156
+\LT@head=\box46
+\LT@firsthead=\box47
+\LT@foot=\box48
+\LT@lastfoot=\box49
+\LT@cols=\count273
+\LT@rows=\count274
+\c@LT@tables=\count275
+\c@LT@chunks=\count276
+\LT@p@ftn=\toks28
+)
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen157
+\lightrulewidth=\dimen158
+\cmidrulewidth=\dimen159
+\belowrulesep=\dimen160
+\belowbottomsep=\dimen161
+\aboverulesep=\dimen162
+\abovetopsep=\dimen163
+\cmidrulesep=\dimen164
+\cmidrulekern=\dimen165
+\defaultaddspace=\dimen166
+\@cmidla=\count277
+\@cmidlb=\count278
+\@aboverulesep=\dimen167
+\@belowrulesep=\dimen168
+\@thisruleclass=\count279
+\@lastruleclass=\count280
+\@thisrulewidth=\dimen169
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen170
+\captionmargin@=\dimen171
+\captionwidth=\dimen172
+\caption@tempdima=\dimen173
+\caption@indent=\dimen174
+\caption@parindent=\dimen175
+\caption@hangindent=\dimen176
+)
+\c@ContinuedFloat=\count281
+Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\ltcaption.sty"
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count282
+\c@subtable=\count283
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: pdfTeX >= 1.30 not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen177
+\Hy@linkcounter=\count284
+\Hy@pagecounter=\count285
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count286
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count287
+
+(C:\Users\Karl\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5104.
+\XeTeXLinkMargin=\dimen178
+\Fld@menulength=\count288
+\Field@Width=\dimen179
+\Fld@charsize=\dimen180
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring OFF on input line 6378.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count289
+\c@Item=\count290
+\c@Hfootnote=\count291
+)
+
+Package hyperref Message: Driver (autodetected): hxetex.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hxetex.def"
+File: hxetex.def 2017/03/14 v6.85a Hyperref driver for XeTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\puenc.def"
+File: puenc.def 2017/03/14 v6.85a Hyperref: PDF Unicode definition (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\stringenc.sty"
+Package: stringenc 2016/05/16 v1.11 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box50
+\c@Hy@AnnotLevel=\count292
+\HyField@AnnotCount=\count293
+\Fld@listcount=\count294
+\c@bookmark@seq@number=\count295
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package rerunfilecheck Info: Feature \pdfmdfivesum is not available
+(rerunfilecheck)             (e.g. pdfTeX or LuaTeX with package `pdftexcmds').
+
+(rerunfilecheck)             Therefore file contents cannot be checked efficien
+tly
+(rerunfilecheck)             and the loading of the package is aborted.
+)
+\Hy@SectionHShift=\skip56
+)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'polyglossia' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'brazil'.
+
+(Tutorial.aux)
+\openout1 = `Tutorial.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+.................................................
+. fontspec info: "setup-math"
+. 
+. Adjusting the maths setup (use [no-math] to avoid this).
+.................................................
+\symlegacymaths=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 64.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 64.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 64.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 64.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 64.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 64.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 64.
+LaTeX Font Info:    Redeclaring math accent \check on input line 64.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 64.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 64.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 64.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 64.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 64.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 64.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/LatinModernRoman(0)/m/n on input lin
+e 64.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 64.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/LatinModernRoman(0)/m/n on input li
+ne 64.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/LatinModernRoman(0)/m/n --> TU/LatinModernRoman(0)/m
+/n on input line 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/LatinModernRoman(0)/m/it on input l
+ine 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/LatinModernRoman(0)/bx/n on input l
+ine 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/LatinModernSans(0)/m/n on input lin
+e 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/LatinModernMono(0)/m/n on input lin
+e 64.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/LatinModernRoman(0)/m/n --> TU/LatinModernRoman(0)/b
+x/n on input line 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/LatinModernRoman(0)/bx/it on input
+ line 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/LatinModernSans(0)/bx/n on input l
+ine 64.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/LatinModernMono(0)/bx/n on input li
+ne 64.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box51
+Package hyperref Info: Link coloring OFF on input line 64.
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count296
+)
+LaTeX Info: Redefining \ref on input line 64.
+LaTeX Info: Redefining \pageref on input line 64.
+LaTeX Info: Redefining \nameref on input line 64.
+
+(Tutorial.out) (Tutorial.out)
+\@outlinefile=\write3
+\openout3 = `Tutorial.out'.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 67.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 67.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (Tutorial.toc)
+\tf@toc=\write4
+\openout4 = `Tutorial.toc'.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\se-ascii-print.def"
+File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
+
+)
+File: figuras/DataMan1.png Graphic file (type bmp)
+<figuras/DataMan1.png>
+
+[1
+
+]
+File: figuras/DataMan2.png Graphic file (type bmp)
+<figuras/DataMan2.png>
+File: figuras/DataMan3.png Graphic file (type bmp)
+<figuras/DataMan3.png>
+ [2]
+File: figuras/JobMan1.png Graphic file (type bmp)
+<figuras/JobMan1.png>
+File: figuras/JobMan2.png Graphic file (type bmp)
+<figuras/JobMan2.png>
+ [3]
+File: figuras/JobMan3.png Graphic file (type bmp)
+<figuras/JobMan3.png>
+ [4]
+File: figuras/Pyt1.png Graphic file (type bmp)
+<figuras/Pyt1.png>
+File: figuras/Pyt2.png Graphic file (type bmp)
+<figuras/Pyt2.png>
+ [5]
+File: figuras/PowerShell.png Graphic file (type bmp)
+<figuras/PowerShell.png>
+File: figuras/pip.png Graphic file (type bmp)
+<figuras/pip.png>
+ [6]
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+Missing character: There is no █ in font Latin Modern Mono 10 Regular/OT:script
+=latn;language=DFLT;!
+ [7]
+File: figuras/RheoFC1.png Graphic file (type bmp)
+<figuras/RheoFC1.png>
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
+ (Tutorial.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 242.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 242.
+ ) 
+Here is how much of TeX's memory you used:
+ 22307 strings out of 427834
+ 410454 string characters out of 3152461
+ 533666 words of memory out of 3000000
+ 26063 multiletter control sequences out of 15000+200000
+ 538116 words of font info for 82 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 53i,6n,92p,10458b,543s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on Tutorial.pdf (8 pages).

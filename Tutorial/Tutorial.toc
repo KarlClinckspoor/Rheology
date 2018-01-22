@@ -1,0 +1,8 @@
+\select@language {brazil}
+\contentsline {section}{\numberline {1}Configuração do RheoWin}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Exportar medidas existentes para ASCII}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Exportar para ASCII automaticamente}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}Configurando o Python}{5}{section.2}
+\contentsline {section}{\numberline {3}Baixando o script}{5}{section.3}
+\contentsline {section}{\numberline {4}Instalando os pacotes necessários}{6}{section.4}
+\contentsline {section}{\numberline {5}Rodando o script}{8}{section.5}
