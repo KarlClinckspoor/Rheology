@@ -6,10 +6,9 @@ from scipy.optimize import curve_fit
 import logging
 import traceback
 
-# antes de começar, perguntar se quer analisar tudo usando as configurações anteriores.
-# todo: criar uma opção para gerar um arquivo xlsx separando em nome, horário, data e valores.
-# todo: sempre checar se o comprimento de GP e Eta são iguais e se só tem valores numéricos em ambos.
-# todo: usar um logging bom
+# todo: add support to logging instead of having to write to a new file.
+# todo: change settings to a class, access it as settings.debug, for example
+# todo: rename
 
 
 # default_settings
@@ -25,18 +24,18 @@ settings = {
             'AUTO_NL': True,
             'DO_LIN': True,
             'DO_NL': True,
-            'TREAT_ALL':False,
-            'EXT':'txt'
+            'TREAT_ALL': False,
+            'EXT': 'txt'
             }
 
 valid_options_lin_sorting = ['by_error', 'by_error_length']
 valid_options_nl_sorting = ['eta_0', 'overall']
 models = ['Carreau', 'Cross', 'Carreau-Yasuda']
-Param_names_errs = {'Carreau':'eta_0 eta_inf GP_b n eta_0_err eta_inf_err GP_b_err n_err',
+Param_names_errs = {'Carreau': 'eta_0 eta_inf GP_b n eta_0_err eta_inf_err GP_b_err n_err',
                     'Cross': 'eta_0 eta_inf GP_b n eta_0_err eta_inf_err GP_b_err n_err',
-                    'PowerLaw':'k n k_err n_err',
-                    'Carreau-Yasuda':'eta_0 eta_inf lambda a n eta_0_err eta_inf_err lambda_err a_err n_err',
-                    'Linear':'a a_err'}
+                    'PowerLaw': 'k n k_err n_err',
+                    'Carreau-Yasuda': 'eta_0 eta_inf lambda a n eta_0_err eta_inf_err lambda_err a_err n_err',
+                    'Linear': 'a a_err'}
 # Param_names = {'Carreau':'eta_0 eta_inf GP_b n',
 #                'Cross': 'eta_0 eta_inf GP_b n',
 #                'PowerLaw':'k n',
@@ -47,6 +46,7 @@ Param_names_errs = {'Carreau':'eta_0 eta_inf GP_b n eta_0_err eta_inf_err GP_b_e
 #                      'PowerLaw':'k_err n_err',
 #                      'Carreau-Yasuda':'eta_0_err eta_inf_err lambda_err a_err n_err',
 #                      'Linear':'a_err'}
+
 
 def calculate_derivatives():
     """"With the presence of the library "uncertainties", this has become irrelevant, but it's still an interesting
@@ -70,16 +70,13 @@ def fit_Carreau(GP, eta_0, eta_inf, GP_b, n):
     return eta_inf + (eta_0 - eta_inf) / (1 + (GP / GP_b) ** 2) ** (n / 2)
 
 
-
 def fit_Cross(GP, eta_0, eta_inf, GP_b, n):
     return eta_inf + (eta_0 - eta_inf) / (1 + (GP / GP_b) ** n)
-
 
 
 def fit_PowerLaw(GP, k, n):
     """Power Law: eta = k * GP ** (n-1)"""
     return k * GP ** (n - 1)
-
 
 
 def fit_CarreauYasuda(GP, eta_0, eta_inf, lbda, a, n):
@@ -160,6 +157,7 @@ def CarreauYasuda_uncertainty(GP, eta0, etainf, lbda, a, n, eta0_err, etainf_err
 
 # todo: powerlaw model.
 
+
 # -----------File manipulation----------------
 def ExtractData(fname, FC_segment=0):
     """Opens the file fname and extracts the data based on where it finds the word 'Eta' and 'GP', these being
@@ -196,8 +194,8 @@ def ExtractData(fname, FC_segment=0):
                     if settings['DEBUG']:
                         print('Debug: Found GP at', column_gp)
         try:
-            GP.append(float(line.replace(',','.').split(';')[column_gp]))
-            Eta.append(float(line.replace(',','.').split(';')[column_eta]))
+            GP.append(float(line.replace(',', '.').split(';')[column_gp]))
+            Eta.append(float(line.replace(',', '.').split(';')[column_eta]))
         except:
             pass
         
@@ -401,7 +399,75 @@ def edit_settings():
 
 
 def print_help():
-    help_file = open('help', 'r', encoding='utf-8').read()
+    try:
+        help_file = open('help', 'r', encoding='utf-8').read()
+    except FileNotFoundError:
+        help_file = """##################################
+######Help file for RheoFC.py#####
+######by Karl Jan Clinckspoor#####
+######      IQ - Unicamp     #####
+######         2017          #####
+##################################
+
+This script was used to help fitting a large number of flow curves.
+
+1. Input file format.
+The main requirement is that the flow-curve files must be formatted in the following way:
+1.1. An arbitrary number of comment lines
+1.2. A line starting with a semicolon(;), before the data table.
+     It must contain the column names, which must have both Eta and GP in them.
+1.3. The data, separated by a semicolon(;)
+
+An example of a valid file is:
+;GP in 1/s;Tau in Pa;Eta in Pas;T in °C;t in s;t_seg in s;
+1|1; ;0,06978; ; ;17,86;7,239;
+1|2; ;0,09985; ; ;22,75;12,13;
+
+Note, however, that GP and Eta are empty. 
+This is because multiple experiments were ran at once, one after the other.
+However, the program ignores these blank data points and only adds what is necessary.
+
+Another example of a valid file:
+1|1; ;0,06978; ; ;17,86;7,239;
+1|2; ;0,09985; ; ;22,75;12,13;
+		...
+3|1;0,0009986;0,04055;40,61; ;245,4;33,01;
+3|2;0,002151;0,07458;34,68; ;278,6;66,18;
+
+Now, the columns contain the necessary data and fitting can continue.
+
+2. Fitting methodology
+The program can fit the data chosen by the user or automatically, the latter using one of two algorithms.
+
+1. Minimizing the fitting error
+2. Minimizing the fitting error divided by the number of points chosen.
+
+The second one will choose, on average, more points, so the result if more representative, but the error might be larger.
+
+3. Settings
+
+#### General ####
+INLINE_GRAPHS: Inline graphs is meant for those with IDEs like Spyder
+PLOT_GRAPHS: Plot graphs after fitting, with error propagation? Slows down the process greatly.
+SAVE_GRAPHS: Save graphs after fitting? Useless if PLOT_GRAPHS is set to False
+TREAT_ALL: Treat all files in folder with the extension EXT
+EXT: Extension of files to look for when batch treating
+
+#### Linear Fitting ####
+DO_LIN: Perform linear fit?
+SORTING_METHOD_LIN: Sorting method of the automatic linear method. Can be 'by_error', minimizing the error, or 'by_error_length', which minimizes the error divided by the total number of points used. Valid entries: by_error, by_error_length
+AUTO_LIN: Set to True if you want the linear fitting to be done automatically. False, if to be done manually.
+
+#### Non-Linear Fitting ####
+DO_NL: Perform non-linear fitting?
+NL_FITTING_METHOD: Fitting method. 'Carreau', 'Cross', 'Carreau-Yasuda'
+SORTING_METHOD_NL: Can be 'overall', minimizing the error of all parameters, or 'eta_0', minimizing the error of only this parameter. At this time, this feature is disabled.
+AUTO_NL: Set to True if you want the non linear fitting to be done automatically
+
+##### Debug #####
+DEBUG: Show debug messages
+
+#############################"""
     print(help_file)
 
 
@@ -430,6 +496,7 @@ def select_files():
     print(*[file + '\n' for file in files], sep='', end='')
     print('=======================')
     return files
+
 
 # -----------Plotting-------------------------
 def PlotData(GP, Eta):
@@ -512,7 +579,10 @@ def plot_error_graphs(file, GP, Eta, params=[], model = '', first_point=0, last_
     plt.figtext(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
     plt.figtext(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
     plt.figtext(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
-
+    
+    fig = plt.gcf()
+    fig.set_size_inches(8,6) # Prevents figure from shrinking as the script continues.
+    
     if settings['SAVE_GRAPHS']:
         plt.savefig(file[:-4] + '.png')
         print('Figure saved.')
@@ -656,6 +726,7 @@ def ManualDataFit(file, model='Linear'):
     return (initialp, finalp), popt, perr
 
 
+    #todo: check why it chooses so poorly sometimes. File 09. Osc Tens, Freq, CF, P1,0 Ur40 35gC.txt
 def automatic_linear_Fitting(GP, Eta, sorting=settings['SORTING_METHOD_LIN']):
     """Goes through all the files, fits them and selects the best fit according to two algorithms.
     First, it selects two points, a beginning and an end point, the first starting at point 0
@@ -669,7 +740,8 @@ def automatic_linear_Fitting(GP, Eta, sorting=settings['SORTING_METHOD_LIN']):
     2. sorting = 'by_error_length': divides the error by how many points were used in the fit.
         May result in a higher overall error, but gives a better representation of the curve.
     """
-    VISC_LIMIT = 100000. # Upper limit for the viscosity in the fitting.
+    VISC_LIMIT = 10000000 # Upper limit for the viscosity in the fitting.
+                          # todo: check if it would be better to select this as max(Eta)*10 or something?
     
     #segment = input('What is the segment that contains the flow curves for all the data?')
     #GP, Eta = ExtractData(file)  #, FC_segment = segment)
@@ -685,12 +757,21 @@ def automatic_linear_Fitting(GP, Eta, sorting=settings['SORTING_METHOD_LIN']):
             perr = np.sqrt(np.diag(pcov))
             fittings.append((first_point, last_point, popt, perr))
     #                           [0]           [1]      [2]   [3]
+    
+    # todo: check how to better select this. Sometimes it selects a very bad range. Check file 09. Osc Tens, Freq, CF, P1,0 Ur40 35gC.txt. Use log(error), or absolute error? Does that even make a difference?
+    
     #print('Debug: fittings: ', fittings)
-    if sorting == 'by_error':
-        fittings.sort(key = lambda x: x[3][0]) # selects the smallest error
-    elif sorting == 'by_error_length':
-        fittings.sort(key = lambda x: x[3][0] / (x[1]-x[0])) # selects the smallest error divided by
+    #if sorting == 'by_error':
+    #    fittings.sort(key = lambda x: x[3][0]) # selects the smallest error
+    #elif sorting == 'by_error_length':
+    #    fittings.sort(key = lambda x: x[3][0] / (x[1]-x[0])) # selects the smallest error divided by
                                                              # the largest length
+    
+    if sorting == 'by_error':
+        fittings.sort(key = lambda x: np.log(x[3][0])) # checks for the smallest logarithmic error. 
+    elif sorting == 'by_error_length':
+        fittings.sort(key = lambda x: np.log(x[3][0]) / (x[1]-x[0]))
+                                                             
     else:
         print('Invalid sorting method. Please select change to a valid value.')
     a = fittings[0][2][0]  # popt
@@ -729,7 +810,7 @@ def all_models_fitting(file):
     
 
 #todo: add bounds to all fitting functions.
-def nonlinear_model_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
+def GP_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
     """Performs three different fittings, starting at the first point (0) and then skipping the first and
     second points. Compares these fittings returns the one with either the smallest 'overall' error, or the
     one with the smallest error in 'eta_0'.
@@ -841,7 +922,8 @@ def main_old():
                 break
 
 
-# todo: checar se o método é uma lista ou uma string, e decidir entre fazer passar por todos os modelos.
+# todo: add support to using parameters passed to script to treat single files, or all the files in a .txt file.
+# todo: check if it's the user's first time using and ask if they want help.
 def main():
     global settings
     load_settings()
@@ -880,7 +962,7 @@ def main():
             with open('log', 'a') as log:
                 log.write('GP and Eta of different lengths on file ' + file + '\n')
             continue
-
+        # todo: check if there are negative values on GP or Eta, and only use positive values.
         np.seterr(over='raise') # Makes Overflow errors appear as exceptions, not only as warnings.
         try:
             if settings['DO_LIN']:

@@ -42,9 +42,26 @@ The second one will choose, on average, more points, so the result if more repre
 
 3. Settings
 
-DEBUG: Set this to True to activate the debug messages in the program.
-SPYDER: Set this to True to assume there is inline representation of graphs, not separate windows.
-SORTING: Set this to either either 'by_error' or 'by_error_length', including the '', to select between the two automatic fitting methods.
+#### General ####
+INLINE_GRAPHS: Inline graphs is meant for those with IDEs like Spyder
+PLOT_GRAPHS: Plot graphs after fitting, with error propagation? Slows down the process greatly.
+SAVE_GRAPHS: Save graphs after fitting? Useless if PLOT_GRAPHS is set to False
+TREAT_ALL: Treat all files in folder with the extension EXT
+EXT: Extension of files to look for when batch treating
 
-##################################################
+#### Linear Fitting ####
+DO_LIN: Perform linear fit?
+SORTING_METHOD_LIN: Sorting method of the automatic linear method. Can be 'by_error', minimizing the error, or 'by_error_length', which minimizes the error divided by the total number of points used. Valid entries: by_error, by_error_length
+AUTO_LIN: Set to True if you want the linear fitting to be done automatically. False, if to be done manually.
+
+#### Non-Linear Fitting ####
+DO_NL: Perform non-linear fitting?
+NL_FITTING_METHOD: Fitting method. 'Carreau', 'Cross', 'Carreau-Yasuda'
+SORTING_METHOD_NL: Can be 'overall', minimizing the error of all parameters, or 'eta_0', minimizing the error of only this parameter. At this time, this feature is disabled.
+AUTO_NL: Set to True if you want the non linear fitting to be done automatically
+
+##### Debug #####
+DEBUG: Show debug messages
+
+#############################
 

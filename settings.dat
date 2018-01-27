@@ -3,13 +3,13 @@
 # Inline graphs is meant for those with IDEs like Spyder
 INLINE_GRAPHS=False
 # Plot graphs after fitting, with error propagation? Slows down the process greatly.
-PLOT_GRAPHS=False
+PLOT_GRAPHS=True
 # Save graphs after fitting? Useless if PLOT_GRAPHS is set to False
 SAVE_GRAPHS=False
 # Treat all files in folder?
-TREAT_ALL=False
+TREAT_ALL=True
 # Extension of files to look for
-EXT=dat
+EXT=txt
 
 #### Linear Fitting ####
 # Perform linear fit?
