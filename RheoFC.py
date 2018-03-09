@@ -553,7 +553,13 @@ def plot_error_graphs(file, GP, Eta, params=[], model = '', first_point=0, last_
 
     plt.xscale('log')
     plt.yscale('log')
-    plt.scatter(GP, Eta)
+    plt.scatter(
+	    
+	    
+	    
+	    
+	    
+	    , Eta)
     plt.errorbar(x, y, yerr=yerr)
 
     plt.annotate(str(first_point+1), (GP[first_point], Eta[first_point]), color = 'red')
@@ -810,7 +816,7 @@ def all_models_fitting(file):
     
 
 #todo: add bounds to all fitting functions.
-def GP_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
+def nonlinear_model_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
     """Performs three different fittings, starting at the first point (0) and then skipping the first and
     second points. Compares these fittings returns the one with either the smallest 'overall' error, or the
     one with the smallest error in 'eta_0'.
