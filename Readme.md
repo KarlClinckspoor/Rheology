@@ -1,3 +1,11 @@
+# Fit Maxwell
+
+A worksheet using array formulas and Solver to minimize the residuals of a Maxwell model in relation to real data. The worksheet can be adapted to other models as necessary. Provided in English and Portuguese.
+
+# Modelos.ipynb
+
+A Jupyter notebook showing the 4 models of oscillatory sweep: Maxwell, Oldroyd-B, Jeffreys and Two-Mode. It contains functions to plot and fit data also. Available, at the moment, only in Portuguese, and is a bit rough around the edges.
+
 # RheoFC.py
 
 # Description
