@@ -5,10 +5,10 @@ import numpy as np
 from scipy.optimize import curve_fit
 import logging
 import traceback
+import pandas
 
 # todo: add support to logging instead of having to write to a new file.
 # todo: change settings to a class, access it as settings.debug, for example
-# todo: rename
 
 
 # default_settings
@@ -25,7 +25,8 @@ settings = {
             'DO_LIN': True,
             'DO_NL': True,
             'TREAT_ALL': False,
-            'EXT': 'txt'
+            'EXT': 'txt',
+            'PREV_EXTRACTED': False
             }
 
 valid_options_lin_sorting = ['by_error', 'by_error_length']
@@ -215,7 +216,30 @@ def ExtractData(fname, FC_segment=0):
         print('Debug: Extracted Data: GP:', GP, 'Eta:', Eta)
     return GP, Eta
 
+    
+def ExtractData_pd(fname):
+    """Uses pandas do extract the data if it was exported using the data extraction tool"""
+    import pandas as pd
+    #print('aqui')
+    pd_temp = pd.read_csv(fname, delimiter=';', encoding='latin1', decimal=',')
+    pd_temp = pd_temp[pd_temp > 0].dropna()
+    
+    col_GP = ''
+    col_Eta = ''
+    
+    for col in pd_temp.columns:
+        if 'GP' in col:
+            col_GP = col
+            #print('achou GP em', col)
+        if 'Eta' in col:
+            col_Eta = col
+            #print('achou Eta em', col)
+    
+    GP = pd_temp[col_GP].tolist()
+    Eta = pd_temp[col_Eta].tolist()
+    return GP, Eta
 
+    
 def record(name, eta0, eta0_err, silent = False, extra = '', fdest_name = 'results.csv'):
     """Writes to a .csv file the fitting results. Default name is results.csv"""
     if not silent:
@@ -230,7 +254,7 @@ def save_settings():
     with open('settings.dat', 'w') as settings_file:
         settings_file.write('#This is an automatically created settings file.\n')
 
-        settings_file.write('\n# Inline graphs is meant for those with IDEs like Spyder\n')
+        settings_file.write('\n# Inline graphs is meant for those with IDEs like Jupyter Notebooks\n')
         settings_file.write('INLINE_GRAPHS=' + str(settings['INLINE_GRAPHS']))
 
         settings_file.write('\n# Plot graphs after fitting, with error propagation? Slows down the process greatly.\n')
@@ -244,6 +268,9 @@ def save_settings():
 
         settings_file.write('\n# Extension of files to look for\n')
         settings_file.write('EXT=' + str(settings['EXT']))
+        
+        settings_file.write('\n# If the important data has been extracted\n')
+        settings_file.write('PREV_EXTRACTED=' + str(settings['PREV_EXTRACTED']))
 
         settings_file.write('\n\n#### Linear Fitting ####')
 
@@ -326,7 +353,8 @@ def load_settings():
         print('======================')
     return 
 
-
+    
+# todo: edit this so it shows the settings every time a change is made
 def edit_settings():
     global settings
     counter = 0
@@ -503,20 +531,32 @@ def PlotData(GP, Eta):
     """Plots the data with labels accompanying each point, for easier attribution.
     Depending on where the program is being run, it is better to leave """
     #labels = [i in range(0, len(GP), 1)]
-    plt.xscale('log')
-    plt.yscale('log')
-
-
-    plt.scatter(GP, Eta, marker='*')
+    fig, ax = plt.subplots(ncols=1, nrows=1)
+    plt.ion()
+    #print(GP)
+    #print('\n\n', Eta)
+    #ax.scatter(GP, Eta, marker='*')
+    ax.plot(GP, Eta, marker='*') 
+   
     for i in range(0, len(GP)):
         plt.annotate(str(i), (GP[i], Eta[i]))
     
-    if not settings['INLINE_GRAPHS']:
-        plt.draw()
-        plt.pause(0.001)
+    #fig = plt.fi
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    #ax.axis('auto')
+    ax.set_autoscale_on(True)
+    fig.show()
     
-    if settings['INLINE_GRAPHS']:
-        plt.show()
+    #import time
+    #time.sleep(2)
+    
+    #if not settings['INLINE_GRAPHS']:
+    #    fig.show()
+        #plt.pause(0.001)
+    
+    #if settings['INLINE_GRAPHS']:
+    #    fig.show()
     return None
 
 
@@ -647,7 +687,7 @@ def Average_mean(Eta):
     return aver, aver_err
 
         
-def ManualDataFit(file, model='Linear'):
+def ManualDataFit(file, GP, Eta, model='Linear'):
     """Treats an individual file using a model.
     Available methods:
     Linear
@@ -656,8 +696,7 @@ def ManualDataFit(file, model='Linear'):
     Power Law
     Carreau-Yasuda
     """
-    GP, Eta = ExtractData(file)
-
+    #GP, Eta = ExtractData(file)
     PlotData(GP, Eta)
 
     while True:
@@ -727,6 +766,8 @@ def ManualDataFit(file, model='Linear'):
 
 
     #todo: check why it chooses so poorly sometimes. File 09. Osc Tens, Freq, CF, P1,0 Ur40 35gC.txt
+
+
 def automatic_linear_Fitting(GP, Eta, sorting=settings['SORTING_METHOD_LIN']):
     """Goes through all the files, fits them and selects the best fit according to two algorithms.
     First, it selects two points, a beginning and an end point, the first starting at point 0
@@ -785,7 +826,7 @@ def automatic_linear_Fitting(GP, Eta, sorting=settings['SORTING_METHOD_LIN']):
 
 
 def all_models_fitting(file):
-    """"Fits all existing models and returns all the possible parameters
+    """Fits all existing models and returns all the possible parameters
     For linear fits: first and last points, intercept, intercept_error
     For the other fits: first point, parameters, errors"""
     GP, Eta = ExtractData(file)  #, FC_segment = segment)
@@ -810,7 +851,7 @@ def all_models_fitting(file):
     
 
 #todo: add bounds to all fitting functions.
-def GP_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
+def nonlinear_model_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
     """Performs three different fittings, starting at the first point (0) and then skipping the first and
     second points. Compares these fittings returns the one with either the smallest 'overall' error, or the
     one with the smallest error in 'eta_0'.
@@ -826,7 +867,7 @@ def GP_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
         Eta_arr = np.array(Eta[first_point:])
         if method == 'Carreau':
             #popt, pcov = curve_fit(fit_Carreau, GP_arr, Eta_arr)
-            popt, pcov = curve_fit(fit_Carreau, GP_arr, Eta_arr, bounds=(0,np.inf))
+            popt, pcov = curve_fit(fit_Carreau, GP_arr, Eta_arr, bounds=(0, np.inf))
             perr = np.sqrt(np.diag(pcov))
             fittings.append((first_point, popt, perr))
             if settings['DEBUG']:
@@ -860,6 +901,7 @@ def GP_auto_fitting(GP, Eta, method='Carreau', sorting='overall'):
         fittings.sort(key = lambda x: x[2][0])
     if sorting == 'overall':
         fittings.sort(key = lambda x: x[2][0] + x[2][1] + x[2][2] + x[2][2])
+        #fittings.sort(key=lambda x: sum(x[2])
     return fittings[0][0], fittings[0][1], fittings[0][2] # first_point, popt, perr
 
 
@@ -939,23 +981,35 @@ def main():
         if len(files) == 0:
             print('No files with the extension', settings['EXT'], 'found. Please select them manually or change the '
                   'extension accordingly.')
-            select_files()
+            files = select_files()
 
     else:
         files = select_files()
 
     if len(files) == 0:  # If no files were selected, even manually.
+        print('No files selected. Quitting.')
         return
 
     for file in files:
+        # Extracting the file contents
         try:
-            GP, Eta = ExtractData(file)
+            if settings['PREV_EXTRACTED'] == False:
+                GP, Eta = ExtractData(file)
+            elif settings['PREV_EXTRACTED'] == True:
+                GP, Eta = ExtractData_pd(file)
             GP, Eta = np.array(GP), np.array(Eta)
-        except ValueError:
+        except ValueError: # todo: Test this with the new extractor
             print('!!!! No Flow Curve data was found! Re-export the data on file', file, 'Skipping.')
             with open('log', 'a') as log:
                 log.write('No data found in file ' + file + '\n')
             continue
+        except KeyError:
+            print('!!!! No flow curve was found! Re-export the data onfile', file, '. Skipping')
+            with open('log', 'a') as log:
+                log.write('No data found in file ' + file + '\n')
+            continue
+        
+        # Checking if there are the same number of points on both
         if len(GP) != len(Eta):
             print('!!!! GP and Eta have different lengths! Re-export', file, 'or fix the problem manually.')
             print('!!!! Skipping file', file)
@@ -964,6 +1018,7 @@ def main():
             continue
         # todo: check if there are negative values on GP or Eta, and only use positive values.
         np.seterr(over='raise') # Makes Overflow errors appear as exceptions, not only as warnings.
+        
         try:
             if settings['DO_LIN']:
                 lin_has_error = ''
@@ -971,7 +1026,7 @@ def main():
                     if settings['AUTO_LIN']:
                         lin_points, a, aerr = automatic_linear_Fitting(GP, Eta, sorting = settings['SORTING_METHOD_LIN'])
                     else:
-                        lin_points, a, aerr = ManualDataFit(file, model='Linear')
+                        lin_points, a, aerr = ManualDataFit(file, GP, Eta, model='Linear')
                 except: # todo: debug here and try to find the types of exception that can occur
                     print('!!!!We have encountered an error while processing file', file)
                     print(traceback.format_exc())
@@ -995,8 +1050,13 @@ def main():
                         nl_first, popt, perr = nonlinear_model_auto_fitting(GP, Eta, method=settings['NL_FITTING_METHOD'])
                         #nl_points = (nl_first, -1)
                     else:
-                        nl_points, popt, perr = ManualDataFit(file, model=settings['NL_FITTING_METHOD'])
+                        nl_points, popt, perr = ManualDataFit(file, GP, Eta, model=settings['NL_FITTING_METHOD'])
                 except FloatingPointError:
+                    print('!!!! Overflow detected on one of the parameters. Could not determine all parameters')
+                    nonlinear_has_error = ';param_overflow_during_fitting'
+                    with open('log', 'a') as log:
+                        log.write('Parameter overflow while trying to fit file ' + file + '\n')
+                except RuntimeError:
                     print('!!!! Overflow detected on one of the parameters. Could not determine all parameters')
                     nonlinear_has_error = ';param_overflow_during_fitting'
                     with open('log', 'a') as log:
