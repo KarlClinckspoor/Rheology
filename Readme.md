@@ -1,6 +1,14 @@
+# Fit Maxwell
+
+A worksheet using array formulas and Solver to minimize the residuals of a Maxwell model in relation to real data. The worksheet can be adapted to other models as necessary. Provided in English and Portuguese.
+
+# Modelos.ipynb
+
+A Jupyter notebook showing the 4 models of oscillatory sweep: Maxwell, Oldroyd-B, Jeffreys and Two-Mode. It contains functions to plot and fit data also. Available, at the moment, only in Portuguese, and is a bit rough around the edges.
+
 # RheoFC.py
 
-# Description
+## Description
 This is a script that calculates the zero-shear viscosity of flow curves obtained from a rheometer automatically. It has the option to use several models for fitting, which are:
 
 * Linear fitting of the plateau region. Uses a method that selects the best number of points to use by minimizing either the total error of the fit, or the error per point (total error / number of points).
@@ -8,7 +16,7 @@ This is a script that calculates the zero-shear viscosity of flow curves obtaine
 
 The script can use matplotlib and the uncertainty package to plot the curves together with the data, and then save the plots for a quick way to check if the models are fitting the data well.
 
-# Installation
+## Installation
 
 1. Install python 3.6. Be sure to include python into the $PATH$ variable.
 2. Use pip to install the requirements. `pip install -r requirements.txt`
@@ -27,13 +35,13 @@ The following packages are included, but aren't necessarily used by the main scr
  
 
 
-# Workflow
+## Workflow
 
-## Settings
+### Settings
 
 The script checks for a 'settings.dat' file at the same folder as the script itself. If this file is not present, it loads its default settings, coded in the script, and writes a new settings file, correctly formatted. You can then edit this file manually, or edit the settings through the script. Be very careful with editing these. Mind the underlines and capitalization, as several settings are case-sensitive. After changing the settings, they are stored into the settings.dat file.
 
-## Data loading
+### Data loading
 
 This script loads plaintext data, separated by commas. It requires a line starting with ';' showing all the parameter names, separated by ';', so that it can find which columns are GP (shear rate) and Eta (viscosity). These .txt files can be converted from .rwd (Haake RheoWin) through the DataManager software, or by configuring the acquisition to save the .txt file together with the .rwd file automatically. This is a sample of how a file should look like: 
 
@@ -51,7 +59,7 @@ This script loads plaintext data, separated by commas. It requires a line starti
  
  If your files have a different formatting, consider changing yourself the ExtractData function to suit your needs. As long as it returns two lists containing GP and Eta, of the same length, all the other functions should work without a problem.
  
-## Data fitting
+### Data fitting
 
 There are 4 models that can be chosen to fit your data. Normally, one chooses the linear model together with a nonlinear model. This can be changed by editing the settings file. Fitting using all 4 available models in one go is not implemented at this moment. 
 
@@ -82,7 +90,7 @@ and the Carreau.dat file will contain:
 
     test.txt;50;1;nonlinear_auto_Carreau;
 
-## Plotting
+### Plotting
 
 After fitting, one can choose to display the data with the model + error bars. These error bars were obtained through error propagation of the fitting parameters. Each figure will contain the file name, the parameter names and their respective errors. It is not intented to be pretty, just for a quick check.
 
@@ -92,10 +100,10 @@ These graphs can also be saved as .png figures if wanted.
 
 If there was an Overflow error, or if the fitting algorithm wasn't able to determine one of the parameters, plotting won't be done and an error will be returned and logged.
 
-## Automation
+### Automation
 
 There are two `main` functions in the script. The `main()` function uses the settings stored separately and asks you a few questions. The `main_simple()` function just treats all the data present in the current folder without asking anything, using the settings stored in the script. You can change the `if __name__ == '__main__'` section of the script to better suit your needs.
 
-## Video
+### Video
 
 A video of the script at work. https://www.youtube.com/watch?v=rG_MGW1XuRM
