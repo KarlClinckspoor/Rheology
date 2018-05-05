@@ -1,17 +1,17 @@
 #This is an automatically created settings file.
 
 # Inline graphs is meant for those with IDEs like Jupyter Notebooks
-INLINE_GRAPHS=True
+INLINE_GRAPHS=False
 # Plot graphs after fitting, with error propagation? Slows down the process greatly.
-PLOT_GRAPHS=False
+PLOT_GRAPHS=True
 # Save graphs after fitting? Useless if PLOT_GRAPHS is set to False
-SAVE_GRAPHS=False
+SAVE_GRAPHS=True
 # Treat all files in folder?
 TREAT_ALL=False
 # Extension of files to look for
 EXT=txt
 # If the important data has been extracted
-PREV_EXTRACTED=False
+PREV_EXTRACTED=True
 
 #### Linear Fitting ####
 # Perform linear fit?

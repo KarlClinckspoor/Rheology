@@ -9,24 +9,43 @@ import pandas as pd
 import Settings
 import sys
 
-# todo: add param_names to class
-# todo: enhance plotting function
-# todo: add parameter that tracks which types of fitting were done.
-# todo: add FloatingPointError and RuntimeError to exception handler of the fitting
-# todo: check which type of fitting was done and decide how to plot it in the class
+# todo: adjust the plotting function to write the parameters better in the tight_layout
+# todo: check program with several different settings
 
 class Fitter:
     def __init__(self, filename, settings, do_fit=True):
         self.VISC_LIMIT = 10000000
         self.FIRST_POINT_MAX = 0
-        self.first_point = 0
-        self.last_point = -1
+        self.l_first_point = 0
+        self.l_last_point = -1
+        self.nl_first_point = 0
+        self.nl_last_point = -1
         self.manip = FileManip()
         self.filename = filename
+        self.settings = settings
+        self.model = self.settings.NL_FITTING_METHOD
+
+        self.lin_done = False
+        self.nl_done = False
+
+        if self.model == 'Cross':
+            #self.param_names = ['eta_0', 'eta_inf', 'GP_b', 'n']
+            self.param_names = 'eta_0 eta_inf GP_b n'
+        elif self.model == 'Carreau':
+            #self.param_names = ['eta_0', 'eta_inf', 'GP_b', 'n']
+            self.param_names = 'eta_0 eta_inf GP_b n'
+        elif self.model == 'Carreau-Yasuda':
+            #self.param_names = ['eta_0', 'eta_inf', 'lambda', 'a', 'n']
+            self.param_names = 'eta_0 eta_inf lambda a n'
+        else:
+            raise NameError(f'Did not understand model {self.model}')
+
+        self.param_names_lin = ['Int', 'Slp']  # todo: check if this is the correct order.
+
         self.GP, self.Eta = self.manip.ExtractData_pd(filename)
         #self.FIRST_POINT_MAX = len(self.GP) // 4
 
-        self.settings = settings
+
 
         if self.settings.DO_LIN:
             self.int = 50
@@ -34,8 +53,7 @@ class Fitter:
             self.slp = 0
             self.slp_err = 0
         elif self.settings.DO_NL:
-            model = self.settings.NL_FITTING_METHOD
-            if model == 'Carreau' or model == 'Cross' or model == 'Carreau-Yasuda':
+            if self.model == 'Carreau' or self.model == 'Cross' or self.model == 'Carreau-Yasuda':
                 self.params = [0, 0, 0, 0]
                 self.param_errs = [0, 0, 0, 0]
             else:
@@ -70,9 +88,8 @@ class Fitter:
                 else:
                     self.manual_fit(0, -1, self.settings.NL_FITTING_METHOD, True)
 
-
     @staticmethod
-    def fit_Carreau(self, GP, eta_0, eta_inf, GP_b, n):
+    def fit_Carreau(GP, eta_0, eta_inf, GP_b, n):
         """Eta = eta_inf + (eta_0 - eta_inf) / (1+(GP/GP_b)**2)**(n/2)
         GP_b is a constant with the dimension of time and n is a dimensionless constant"""
         return eta_inf + (eta_0 - eta_inf) / (1 + (GP / GP_b) ** 2) ** (n / 2)
@@ -101,7 +118,6 @@ class Fitter:
         """Uses the uncertainty package to calculate the Carreau model values. GP
         can be a numpy array, which returns two lists of values and errors, a float64,
         float or int and returns a tuple (val, err)"""
-        from uncertainties import ufloat
         f_eta0 = ufloat(eta0, eta0_err)
         f_etainf = ufloat(etainf, etainf_err)
         f_GPb = ufloat(GPb, GPb_err)
@@ -122,7 +138,6 @@ class Fitter:
 
     @staticmethod
     def cross_uncertainty(GP, eta0, etainf, GPb, n, eta0_err, etainf_err, GPb_err, n_err):
-        from uncertainties import ufloat
         f_eta0 = ufloat(eta0, eta0_err)
         f_etainf = ufloat(etainf, etainf_err)
         f_GPb = ufloat(GPb, GPb_err)
@@ -143,7 +158,6 @@ class Fitter:
 
     @staticmethod
     def carryas_uncertainty(GP, eta0, etainf, lbda, a, n, eta0_err, etainf_err, lbda_err, a_err, n_err):
-        from uncertainties import ufloat
         f_eta0 = ufloat(eta0, eta0_err)
         f_etainf = ufloat(etainf, etainf_err)
         f_n = ufloat(n, n_err)
@@ -200,8 +214,12 @@ class Fitter:
             fittings.sort(key=lambda x: np.log(x[3][0]))  # gets perr of eta_0
         elif self.settings.LIN_SORTING_METHOD == 'by_error_length':
             fittings.sort( key=lambda x: np.log(x[3][0]) / (x[1] - x[0]) ) # divides perr by last-first
-        self.int = fittings[0][2][0]  # intercept
-        self.int_err = fittings[0][3][0]  # intercept err
+
+        self.int = fittings[0][2][0]
+        self.int_err = fittings[0][3][0]
+        self.l_first_point = fittings[0][0]  # todo: add variable names to first and last points of linear and nl
+        self.l_last_point = fittings[0][1]
+        self.lin_done = True
 
         if self.settings.DEBUG:
             print('Debug: fittings_sorted: ', fittings)
@@ -259,7 +277,7 @@ class Fitter:
         else:
             raise ValueError(f'Could not understand the sorting method {self.settings.NL_SORTING_METHOD}')
 
-        self.first_point = fittings[0][0]
+        self.nl_first_point = fittings[0][0]
         self.params = fittings[0][1]
         self.param_errs = fittings[0][2]
 
@@ -279,9 +297,12 @@ class Fitter:
                                       fdest_name=self.settings.NL_FITTING_METHOD+'.csv')
                 self.manip.logger(self.filename, 'No Viscosity')
 
-        return self.first_point, self.params, self.param_errs
+        self.nl_done = True
+        return self.nl_first_point, self.params, self.param_errs
 
-    def manual_fit(self, first, last, fit_types, save=True):  # TODO: check if the bounds are correct
+    # TODO: check if the bounds are correct
+    # TODO: increment this function to be able to accept multiple fittings
+    def manual_fit(self, first, last, fit_types, save=True):
         GP_arr = np.array(self.GP[first:last + 1])
         Eta_arr = np.array(self.Eta[first:last + 1])
         fittings = []
@@ -299,6 +320,8 @@ class Fitter:
             elif 'Carreau-Yasuda' in type:
                 popt, pcov = curve_fit(self.fit_CarreauYasuda, GP_arr, Eta_arr, p0=(30, 0),
                                        bounds=(0, np.inf))
+            else:
+                raise NameError(f'Could not understand the list fit_types {fit_types}')
 
             perr = np.sqrt(np.diag(pcov))
 
@@ -319,8 +342,7 @@ class Fitter:
 
         return fittings
 
-    def plot_error_graphs(self, file, params, fp, lp, model, param_names):
-        # todo: make this more in line with the class
+    def plot_error_graphs(self): # todo: If it has both plots, make them side by side
         TEXT_FILENAME_X = 0.1
         TEXT_PARAMS_X = 0.3
         TEXT_Y = 0.98
@@ -328,55 +350,84 @@ class Fitter:
 
         if self.settings.DEBUG:
             print('Debug: x', x)
-            print('Debug: params', params)
+            print('Debug: params', self.params)
             print('Debug: GP', self.GP, 'Eta', self.Eta)
 
-        if model == 'Carreau':
-            y, yerr = self.carr_uncertainty(x, *params)
-        elif model == 'Cross':
-            y, yerr = self.cross_uncertainty(x, *params)
-        elif model == 'Carreau-Yasuda':
-            y, yerr = self.carr_uncertainty(x, *params)
-        elif model == 'Linear':
-            y, yerr = np.ones(len(x)) * params[0], np.ones(len(x)) * params[1]
+        if self.nl_done:
+            if self.model == 'Carreau':
+                y, yerr = self.carr_uncertainty(x, *self.params, *self.param_errs)
+            elif self.model == 'Cross':
+                y, yerr = self.cross_uncertainty(x, *self.params, *self.param_errs)
+            elif self.model == 'Carreau-Yasuda':
+                y, yerr = self.carryas_uncertainty(x, *self.params, *self.param_errs)
+        if self.lin_done:
+            y_l, yerr_l = np.ones(len(x)) * self.int, np.ones(len(x)) * self.int_err
+            # Creates a horizontal line with n points
 
-        fig, ax1 = plt.subplots(ncols=1, nrows=1, figsize=(6, 4))
-        ax1.set_xscale('log')
-        ax1.set_yscale('log')
-        ax1.plot(self.GP, self.Eta, linewidth=0, marker='o', markersize=5)
-        ax1.errorbar(x, y, yerr=yerr)
+        if self.nl_done and self.lin_done:
+            fig, [axn, axl] = plt.subplots(ncols=2, nrows=1, figsize=(12, 4))
+        elif self.nl_done and not self.lin_done:
+            fig, axn = plt.subplots(ncols=1, nrows=1, figsize=(6, 4))
+        elif not self.nl_done and not self.lin_done:
+            fig, axl = plt.subplot(ncols=1, nrows=1, figsize=(6, 4))
 
-        ax1.annotate(str(fp + 1), (self.GP[fp], self.Eta[fp]), color='red')
-        if lp == -1:
-            ax1.annotate(str(len(self.GP)), (self.GP[lp], self.Eta[lp]), color='red')
-        else:
-            ax1.annotate(str(lp), (self.GP[lp], self.Eta[lp]), color='red')
+        if self.nl_done:
+            axn.set_xscale('log')
+            axn.set_yscale('log')
+            axn.plot(self.GP, self.Eta, linewidth=0, marker='o', markersize=5)
+            axn.errorbar(x, y, yerr=yerr)
+            axn.annotate(str(self.nl_first_point + 1), (self.GP[self.nl_first_point], self.Eta[self.nl_first_point]), color='red')
+            if self.nl_last_point == -1:
+                axn.annotate(str(len(self.GP)), (self.GP[self.nl_last_point], self.Eta[self.nl_last_point]),
+                             color='red')  # todo: check this function
+            else:
+                axn.annotate(str(self.nl_last_point), (self.GP[self.nl_last_point], self.Eta[self.nl_last_point]), color='red')
+            model_param_names = 'Model: ' + self.model + ' Params: ' + self.param_names
+            param_text = " ".join([str(round(par, 2)) + '+/-' + str(round(err, 2))
+                                   for par, err in zip(self.params, self.param_errs)])
 
-        # Creates strings to be included in the graphs
-        model_param_names = 'Model: ' + model + ' Params: ' + param_names
+            fig.text(TEXT_FILENAME_X, TEXT_Y, self.filename, size='small')
+            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
+            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_text, size='small')
+            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
+            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
+            #fig.set_size_inches(6, 4)  # todo: check if this is still necessary
+            TEXT_FILENAME_X = 0.5  # Changes it to half in case a linear plot is done.
 
-        # This is kinda obscure on purpose, just for fun. What it does is that it transforms
-        # each parameter value into 2 significant digits and then joins these as strings
-        param_values = ' '.join(
-            list(map(str, [round(x, 2) for x in params[:len(params) // 2]])))  # First half has param values
-        param_errors = ' '.join(list(map(str, [round(x, 2) for x in params[len(params) // 2:]])))
+        if self.lin_done:
+            axl.set_xscale('log')
+            axl.set_yscale('log')
+            axl.plot(self.GP, self.Eta, linewidth=0, marker='o', markersize=5)
+            axl.errorbar(x, y_l, yerr=yerr_l)
+            axl.annotate(str(self.l_first_point + 1), (self.GP[self.l_first_point], self.Eta[self.l_first_point]), color='red')
+            if self.l_last_point == -1:
+                axl.annotate(str(len(self.GP)), (self.GP[self.l_last_point], self.Eta[self.l_last_point]),
+                             color='red')  # todo: check this function
+            else:
+                axl.annotate(str(self.l_last_point), (self.GP[self.l_last_point], self.Eta[self.l_last_point]), color='red')
+            model_param_names = 'Model: Linear. Params: Intercept'
+            param_text = f"int = {self.int}+/-{self.int_err}"
 
-        fig.text(TEXT_FILENAME_X, TEXT_Y, file, size='small')
-        fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
-        fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
-        fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
-        fig.set_size_inches(6, 4)  # todo: check if this is still necessary
+            fig.text(TEXT_FILENAME_X, TEXT_Y, self.filename, size='small')
+            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
+            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_text, size='small')
+            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
+            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
+            #fig.set_size_inches(6, 4)  # todo: check if this is still necessary
+
+        #fig.tight_layout()
 
         if self.settings.SAVE_GRAPHS:
-            fig.savefig(file[:-4] + '.png')
+            fig.savefig(self.filename[:-4] + '.png')
             print('Figure saved.')
-        if not self.settings['INLINE_GRAPHS']:
+        if not self.settings.INLINE_GRAPHS:
             plt.draw()
-            plt.pause(0.5)
+            plt.pause(5)
             plt.clf()
         else:
             plt.show()
         return
+
 
 class FileManip:
     # def __init__(self, sett):
@@ -509,8 +560,22 @@ class FileManip:
             else:  # type == 'Generic'
                 log.write(f'Error while processing {file}: {extra}\n')
 
-# todo: adjust the main function to accomodate the changes to OO programming
 
+
+
+def test():
+    settings = Settings.Settings()
+    filename = 'CF_Sac50-3--0.csv'
+    fit = Fitter(filename, settings)
+    fit.plot_error_graphs()
+
+
+if __name__ == '__main__':
+    test()
+    # main()
+
+
+# todo: adjust the main function to acommodate the changes to OO programming
 def main():
     settings = Settings.Settings()
     manip = FileManip()
@@ -545,7 +610,15 @@ def main():
             #print(traceback.format_exc())
 
         if settings.PLOT_GRAPHS or settings.SAVE_GRAPHS:
-            fit.plot_error_graphs()
+            try:
+                fit.plot_error_graphs()
+            except OverflowError:  # todo: write which parameter has overflown
+                print('!!!! Overflow detected on one of the parameters. Could not plot the data')
+                nonlinear_has_error = ';param_overflow_during_fitting'
+                # todo: log this
+            except UnboundLocalError:
+                print('Not able to write to file because the subroutine did not return the fitting parameters')
+                # todo: log this
 
 
             #fit.plot_error_graphs(file[:-4] + '_lin_' + file[-4:], fit.params, fit.first_point, fit.last_point,
@@ -559,26 +632,7 @@ def main():
                 #        extra='linear automatic;FP=' + str(lin_points[0]) + 'LP=' + str(lin_points[1]) +
                 #              lin_has_error, fdest_name='linear.csv')
 
-            # if settings['DO_NL']:
-            #     try:
-            #         nonlinear_has_error = ''
-            #         if settings['AUTO_NL']:
-            #             nl_first, popt, perr = nonlinear_model_auto_fitting(GP, Eta,
-            #                                                                 method=settings['NL_FITTING_METHOD'])
-            #             # nl_points = (nl_first, -1)
-            #         else:
-            #             nl_points, popt, perr = ManualDataFit(file, GP, Eta, model=settings['NL_FITTING_METHOD'])
-            #     except FloatingPointError:
-            #         print('!!!! Overflow detected on one of the parameters. Could not determine all parameters')
-            #         nonlinear_has_error = ';param_overflow_during_fitting'
-            #         with open('log', 'a') as log:
-            #             log.write('Parameter overflow while trying to fit file ' + file + '\n')
-            #     except RuntimeError:
-            #         print('!!!! Overflow detected on one of the parameters. Could not determine all parameters')
-            #         nonlinear_has_error = ';param_overflow_during_fitting'
-            #         with open('log', 'a') as log:
-            #             log.write('Parameter overflow while trying to fit file ' + file + '\n')
-            #     try:
+
             #         if settings['PLOT_GRAPHS']:
             #             plot_error_graphs(file[:-4] + '_carr_' + file[-4:], GP, Eta,
             #                               params=np.concatenate((popt, perr)),
