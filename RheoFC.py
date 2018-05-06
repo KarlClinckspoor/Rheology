@@ -593,13 +593,7 @@ def plot_error_graphs(file, GP, Eta, params=[], model = '', first_point=0, last_
 
     plt.xscale('log')
     plt.yscale('log')
-    plt.scatter(
-	    
-	    
-	    
-	    
-	    
-	    , Eta)
+    plt.scatter(GP, Eta)
     plt.errorbar(x, y, yerr=yerr)
 
     plt.annotate(str(first_point+1), (GP[first_point], Eta[first_point]), color = 'red')

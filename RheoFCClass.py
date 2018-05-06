@@ -11,6 +11,10 @@ import sys
 
 # todo: adjust the plotting function to write the parameters better in the tight_layout
 # todo: check program with several different settings
+# todo: create a function to do the fitting in case do_fit is set to False
+# todo: use lmfit module to create the fits in a more elegant manner
+# todo: Check if there are missing parameters in the results file
+# todo: implement R2 and R2' calculations, sorting, and adding them to the plots
 
 class Fitter:
     def __init__(self, filename, settings, do_fit=True):
@@ -42,7 +46,7 @@ class Fitter:
 
         self.param_names_lin = ['Int', 'Slp']  # todo: check if this is the correct order.
 
-        self.GP, self.Eta = self.manip.ExtractData_pd(filename)
+        #self.GP, self.Eta = self.manip.ExtractData_pd(filename)
         #self.FIRST_POINT_MAX = len(self.GP) // 4
 
 
@@ -77,16 +81,19 @@ class Fitter:
                              f'Re-export {filename} or fix the problem manually.')
 
         if do_fit:
-            if self.settings.DO_LIN:
-                if self.settings.AUTO_LIN:
-                    self.automatic_lin_fitting(True)
-                else:  # todo: plot, save and ask for the required points
-                    self.manual_fit(0, -1, 'Linear')
-            if self.settings.DO_NL:
-                if self.settings.AUTO_NL:
-                    self.automatic_nl_fitting(True)
-                else:
-                    self.manual_fit(0, -1, self.settings.NL_FITTING_METHOD, True)
+            self.fit()
+
+    def fit(self):
+        if self.settings.DO_LIN:
+            if self.settings.AUTO_LIN:
+                self.automatic_lin_fitting(True)
+            else:  # todo: plot, save and ask for the required points
+                self.manual_fit(0, -1, 'Linear')
+        if self.settings.DO_NL:
+            if self.settings.AUTO_NL:
+                self.automatic_nl_fitting(True)
+            else:
+                self.manual_fit(0, -1, self.settings.NL_FITTING_METHOD, True)
 
     @staticmethod
     def fit_Carreau(GP, eta_0, eta_inf, GP_b, n):
