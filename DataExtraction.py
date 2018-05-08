@@ -5,6 +5,9 @@ import glob
 import numpy as np
 import os
 
+# todo: Have the program detect the parameters that are in the file before anything.
+#       This will remove the problems associated with files not having a 
+#       homogeneous quantity and order of exported parameters.
 def extraction(df, nome=''):
     df = df.replace(to_replace=r'\s+', value=np.nan, regex=True)
     
@@ -80,9 +83,14 @@ def main():
 
     for nome, arq in zip(nomes, arquivos):
         print('Tratando {0}'.format(arq))
-        pd_temp = pd.read_csv(arq, delimiter=';', header=4, 
+        try:
+            pd_temp = pd.read_csv(arq, delimiter=';', header=4, 
                         names=["serie", "GP", "Eta", "w", "G1", "G2", "T", "Tau", 'lixo'], encoding='latin1', decimal=',')
-
+        except:
+            pd_temp = pd.read_csv(arq, delimiter=';', header=4, 
+                        names=["serie", "GP", "Tau", "GP", "Eta", "t", "t_seg", "lixo"], encoding='latin1', decimal=',')
+        
+        
         temp_CF, temp_OT, temp_OF = extraction(pd_temp, nome=nome + ' ')
 
         if type(temp_CF) != type(None):

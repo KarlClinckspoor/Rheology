@@ -7,9 +7,9 @@ PLOT_GRAPHS=True
 # Save graphs after fitting? Useless if PLOT_GRAPHS is set to False
 SAVE_GRAPHS=True
 # Treat all files in folder?
-TREAT_ALL=False
+TREAT_ALL=True
 # Extension of files to look for
-EXT=txt
+EXT=csv
 # If the important data has been extracted
 PREV_EXTRACTED=True
 

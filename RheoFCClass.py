@@ -3,7 +3,7 @@ import glob
 import numpy as np
 from scipy.optimize import curve_fit
 import traceback
-from lmfit import minimize, Minimizer, Parameters, Parameter, report_fit, Model
+from lmfit import minimize, Parameters
 from uncertainties import ufloat
 import pandas as pd
 import Settings
@@ -11,10 +11,11 @@ import sys
 
 # todo: adjust the plotting function to write the parameters better in the tight_layout
 # todo: check program with several different settings
-# todo: create a function to do the fitting in case do_fit is set to False
-# todo: use lmfit module to create the fits in a more elegant manner
-# todo: Check if there are missing parameters in the results file
-# todo: implement R2 and R2' calculations, sorting, and adding them to the plots
+# todo: Check the results file, if the correct parameters are being recorded
+# todo: implement R2' calculations, sorting, and adding them to the plots
+# todo: check if converting GP and Eta to ndarrays at the beginning breaks anything.
+# todo: add a setting to adjust how long to show the graphs after they are plotted.
+# todo: Remove the prev_extracted setting and try to guess this parameter
 
 class Fitter:
     def __init__(self, filename, settings, do_fit=True):
@@ -28,6 +29,7 @@ class Fitter:
         self.filename = filename
         self.settings = settings
         self.model = self.settings.NL_FITTING_METHOD
+        self.R2 = 0
 
         self.lin_done = False
         self.nl_done = False
@@ -66,8 +68,12 @@ class Fitter:
         try:
             if self.settings.PREV_EXTRACTED:
                 self.GP, self.Eta = self.manip.ExtractData_pd(filename)
+                self.GP = np.array(self.GP)
+                self.Eta = np.array(self.Eta)
             else:
                 self.GP, self.Eta = self.manip.ExtractData(filename)
+                self.GP = np.array(self.GP)
+                self.Eta = np.array(self.Eta)
         except ValueError:
             self.manip.logger(filename, 'Failed to open')
             raise ValueError(f'!!!! No Flow Curve data was found! Re-export the data on file{filename}.')
@@ -184,6 +190,78 @@ class Fitter:
 
         return CY_val, CY_err
 
+    def lm_curvefit(self, do_lin=False):
+        params = Parameters()
+        SStot = sum( (self.Eta - np.mean(self.Eta)) ** 2)
+        if do_lin:
+            params.add('Int', 50, vary=True, min=0)
+            params.add('Slp', 0, vary=False)
+            fit = minimize(self.residual_lin, params, args=(self.GP, self.Eta))
+            self.slp = fit.params['Slp'].value
+            self.int = fit.params['Int'].value
+            self.slp_err = fit.params['Slp'].stderr
+            self.int_err = fit.params['Int'].stderr
+            self.chisqr = fit.chisqr
+            self.R2 = 1 - fit.chisqr / SStot
+            return
+        elif self.model == 'Carreau':
+            params.add('eta_0', 100, vary=True, min=0)
+            params.add('eta_inf', 1, vary=True, min=0)
+            params.add('GP_b', 5, vary=True, min=0)
+            params.add('n', 1, vary=True, min=0)
+            fit = minimize(self.residual, params, args=(self.GP, self.Eta))
+            self.params = [fit.params[par].value for par in fit.params]
+            self.param_errs = [fit.params[par].stderr for par in fit.params]
+            self.chisqr = fit.chisqr
+            self.R2 = 1 - fit.chisqr / SStot
+            return
+        elif self.model == 'Cross':
+            params.add('eta_0', 100, vary=True, min=0)
+            params.add('eta_inf', 1, vary=True, min=0)
+            params.add('GP_b', 5, vary=True, min=0)
+            params.add('n', 1, vary=True, min=0)
+            fit = minimize(self.residual, params, args=(self.GP, self.Eta))
+            self.params = [fit.params[par].value for par in fit.params]
+            self.param_errs = [fit.params[par].stderr for par in fit.params]
+            self.chisqr = fit.chisqr
+            self.R2 = 1 - fit.chisqr / SStot
+            return
+        elif self.model == 'Carreau-Yasuda':
+            params.add('eta_0', 100, vary=True, min=0)
+            params.add('eta_inf', 1, vary=True, min=0)
+            params.add('lbda', 5, vary=True, min=0)
+            params.add('a', 1, vary=True, min=0)
+            params.add('n', 1, vary=True, min=0)
+            fit = minimize(self.residual, params, args=(self.GP, self.Eta))
+            self.params = [fit.params[par].value for par in fit.params]
+            self.param_errs = [fit.params[par].stderr for par in fit.params]
+            SSres = fit.chisqr
+            self.R2 = 1 - SSres / SStot
+            #print("Not accepted at this time, sorry. Has a weird TypeError I can't figure out.")
+            return
+
+
+    def residual(self, params, x, dataset):
+        if self.model == 'Carreau':
+            mod = self.fit_Carreau(x, params['eta_0'], params['eta_inf'], params['GP_b'], params['n'])
+        elif self.model == 'Cross':
+            mod = self.fit_Cross(x, params['eta_0'], params['eta_inf'], params['GP_b'], params['n'])
+        elif self.model == 'Carreau-Yasuda':
+            mod = self.fit_CarreauYasuda(x, params['eta_0'], params['eta_inf'], params['lbda'], params['a'],
+                                         params['n'])
+
+        resid = dataset - mod
+        return resid
+
+
+    def residual_lin(self, params, x, dataset):
+        if type(x) == list:
+            x = np.array(x)
+        mod = params['Int'] + params['Slp'] * x
+        resid = dataset - mod
+        return resid
+
+
     def automatic_lin_fitting(self, save=True):
         """Goes through all the files, fits them and selects the best fit according to two algorithms.
         First, it selects two points, a beginning and an end point, the first starting at point 0
@@ -238,6 +316,10 @@ class Fitter:
                                   extra=f"{fittings[0][0]};{fittings[0][1]};")
 
         return self.int, self.int_err
+
+    # todo: change from curve_fit to lm_fit.
+    # todo: calculate R2 for all fittings and add it in the end to the class
+    # todo: add options to sort by R2.
 
     def automatic_nl_fitting(self, save=True):
         fittings = []
@@ -427,18 +509,19 @@ class Fitter:
         if self.settings.SAVE_GRAPHS:
             fig.savefig(self.filename[:-4] + '.png')
             print('Figure saved.')
-        if not self.settings.INLINE_GRAPHS:
+        if not self.settings.INLINE_GRAPHS and self.settings.PLOT_GRAPHS:
             plt.draw()
-            plt.pause(5)
-            plt.clf()
-        else:
+            plt.pause(0.5)
+            #plt.clf()
+            plt.close(fig)
+        elif self.settings.PLOT_GRAPHS:
             plt.show()
         return
 
 
 class FileManip:
-    # def __init__(self, sett):
-    #     self.settings = sett
+    #def __init__(self, sett):
+    #    self.settings = sett
 
     @staticmethod
     def ExtractData(fname, FC_segment=0):
@@ -466,15 +549,15 @@ class FileManip:
                 column_names = line.rstrip().split(';')
                 # if settings['DEBUG']:
                 #     print('Debug: column names', column_names)
-                # for i, column in enumerate(column_names):
-                #     if 'Eta' in column and 'Eta*' not in column:
-                #         column_eta = i
-                #         if settings['DEBUG']:
-                #             print('Debug: Found Eta at', column_eta)
-                #     if 'GP' in column:
-                #         column_gp = i
-                #         if settings['DEBUG']:
-                #             print('Debug: Found GP at', column_gp)
+                for i, column in enumerate(column_names):
+                    if 'Eta' in column and 'Eta*' not in column:
+                        column_eta = i
+                        #if settings['DEBUG']:
+                        #    print('Debug: Found Eta at', column_eta)
+                    if 'GP' in column:
+                        column_gp = i
+                        #if settings['DEBUG']:
+                        #    print('Debug: Found GP at', column_gp)
             try:
                 GP.append(float(line.replace(',', '.').split(';')[column_gp]))
                 Eta.append(float(line.replace(',', '.').split(';')[column_eta]))
@@ -568,21 +651,17 @@ class FileManip:
                 log.write(f'Error while processing {file}: {extra}\n')
 
 
-
-
 def test():
     settings = Settings.Settings()
+    settings.NL_FITTING_METHOD = 'Carreau-Yasuda'
     filename = 'CF_Sac50-3--0.csv'
-    fit = Fitter(filename, settings)
-    fit.plot_error_graphs()
+    fit = Fitter(filename, settings, do_fit=False)
+    fit.lm_curvefit()
+    print(fit.model, fit.R2, *fit.params)
+    #fit.plot_error_graphs()
+    return fit
 
 
-if __name__ == '__main__':
-    test()
-    # main()
-
-
-# todo: adjust the main function to acommodate the changes to OO programming
 def main():
     settings = Settings.Settings()
     manip = FileManip()
@@ -609,10 +688,10 @@ def main():
         try:
             fit = Fitter(file, settings, do_fit=True)
         except ValueError:  # todo: debug and check what would be needed here.
-            print(f'Skipping')
+            print(f'Skipping {file}: Value Error')
             continue
         except KeyError:
-            print('Skipping')
+            print(f'Skipping {file} Key Error')
             continue
             #print(traceback.format_exc())
 
@@ -665,3 +744,7 @@ def main():
         #     with open('log', 'a') as log:
         #         log.write('Error while processing ' + file + '\n')
         #         log.write(traceback.format_exc())
+
+if __name__ == '__main__':
+    #fit = test()
+    main()
