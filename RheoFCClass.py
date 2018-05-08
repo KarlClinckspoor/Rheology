@@ -9,18 +9,27 @@ import pandas as pd
 import Settings
 import sys
 
-# todo: adjust the plotting function to write the parameters better in the tight_layout
 # todo: check program with several different settings
-# todo: Check the results file, if the correct parameters are being recorded
+# todo: solve the problems with manual fitting
+
+# todo: adjust the plotting function to write the parameters better in the tight_layout
 # todo: implement R2' calculations, sorting, and adding them to the plots
+#       R'2 = 1 - MQres/MQTcorr; MQTcor = SQTcor / I-1; MQres = SQres / I-p
+#       I: degrees of freedom. p: number of parameters in the model
+#       SQTcor = sum(yi - mean(y)) ^ 2
+#       SQres = chisqr
+# todo: check why the R2 on the automatic linear fit is buggy
+
+# todo: Check the results file, if the correct parameters are being recorded
 # todo: check if converting GP and Eta to ndarrays at the beginning breaks anything.
-# todo: add a setting to adjust how long to show the graphs after they are plotted.
+
 # todo: Remove the prev_extracted setting and try to guess this parameter
+
+# todo: remove the debugging setting. Just use the debugging tools.
 
 class Fitter:
     def __init__(self, filename, settings, do_fit=True):
         self.VISC_LIMIT = 10000000
-        self.FIRST_POINT_MAX = 0
         self.l_first_point = 0
         self.l_last_point = -1
         self.nl_first_point = 0
@@ -29,7 +38,14 @@ class Fitter:
         self.filename = filename
         self.settings = settings
         self.model = self.settings.NL_FITTING_METHOD
-        self.R2 = 0
+        self.l_R2 = 0
+        self.nl_R2 = 0
+        self.wait = float(settings.WAIT)
+        self.fixed_fp = settings.FIXED_FP_NL
+        if not self.fixed_fp:
+            self.max_fp = int(settings.MAX_FP_NL)
+        else:
+            self.max_fp = 0
 
         self.lin_done = False
         self.nl_done = False
@@ -47,11 +63,6 @@ class Fitter:
             raise NameError(f'Did not understand model {self.model}')
 
         self.param_names_lin = ['Int', 'Slp']  # todo: check if this is the correct order.
-
-        #self.GP, self.Eta = self.manip.ExtractData_pd(filename)
-        #self.FIRST_POINT_MAX = len(self.GP) // 4
-
-
 
         if self.settings.DO_LIN:
             self.int = 50
@@ -89,7 +100,7 @@ class Fitter:
         if do_fit:
             self.fit()
 
-    def fit(self):
+    def _fit(self):  # Uses fit_curve. Does not provide an R2 value.
         if self.settings.DO_LIN:
             if self.settings.AUTO_LIN:
                 self.automatic_lin_fitting(True)
@@ -98,6 +109,18 @@ class Fitter:
         if self.settings.DO_NL:
             if self.settings.AUTO_NL:
                 self.automatic_nl_fitting(True)
+            else:
+                self.manual_fit(0, -1, self.settings.NL_FITTING_METHOD, True)
+
+    def fit(self):
+        if self.settings.DO_LIN:
+            if self.settings.AUTO_LIN:
+                self.automatic_lin_fitting_lm(True)
+            else:  # todo: plot, save and ask for the required points
+                self.manual_fit(0, -1, 'Linear')
+        if self.settings.DO_NL:
+            if self.settings.AUTO_NL:
+                self.automatic_nl_fitting_lm(True)
             else:
                 self.manual_fit(0, -1, self.settings.NL_FITTING_METHOD, True)
 
@@ -190,56 +213,52 @@ class Fitter:
 
         return CY_val, CY_err
 
-    def lm_curvefit(self, do_lin=False):
+    def lm_curvefit(self, GP, Eta, do_lin=False):
         params = Parameters()
-        SStot = sum( (self.Eta - np.mean(self.Eta)) ** 2)
-        if do_lin:
+        SStot = sum((Eta - np.mean(Eta)) ** 2)
+        if do_lin:  # todo: Check why R2 is very weird here.
             params.add('Int', 50, vary=True, min=0)
             params.add('Slp', 0, vary=False)
-            fit = minimize(self.residual_lin, params, args=(self.GP, self.Eta))
-            self.slp = fit.params['Slp'].value
-            self.int = fit.params['Int'].value
-            self.slp_err = fit.params['Slp'].stderr
-            self.int_err = fit.params['Int'].stderr
-            self.chisqr = fit.chisqr
-            self.R2 = 1 - fit.chisqr / SStot
-            return
+            fit = minimize(self.residual_lin, params, args=(GP, Eta))
+            slp = fit.params['Slp'].value
+            int = fit.params['Int'].value
+            slp_err = fit.params['Slp'].stderr
+            int_err = fit.params['Int'].stderr
+            chisqr = fit.chisqr
+            R2 = 1 - fit.chisqr / SStot
+            return [slp, int], [slp_err, int_err], R2
         elif self.model == 'Carreau':
             params.add('eta_0', 100, vary=True, min=0)
             params.add('eta_inf', 1, vary=True, min=0)
             params.add('GP_b', 5, vary=True, min=0)
             params.add('n', 1, vary=True, min=0)
-            fit = minimize(self.residual, params, args=(self.GP, self.Eta))
-            self.params = [fit.params[par].value for par in fit.params]
-            self.param_errs = [fit.params[par].stderr for par in fit.params]
-            self.chisqr = fit.chisqr
-            self.R2 = 1 - fit.chisqr / SStot
-            return
+            fit = minimize(self.residual, params, args=(GP, Eta))
+            params = [fit.params[par].value for par in fit.params]
+            param_errs = [fit.params[par].stderr for par in fit.params]
+            R2 = 1 - fit.chisqr / SStot
+            return params, param_errs, R2
         elif self.model == 'Cross':
             params.add('eta_0', 100, vary=True, min=0)
             params.add('eta_inf', 1, vary=True, min=0)
             params.add('GP_b', 5, vary=True, min=0)
             params.add('n', 1, vary=True, min=0)
-            fit = minimize(self.residual, params, args=(self.GP, self.Eta))
-            self.params = [fit.params[par].value for par in fit.params]
-            self.param_errs = [fit.params[par].stderr for par in fit.params]
-            self.chisqr = fit.chisqr
-            self.R2 = 1 - fit.chisqr / SStot
-            return
+            fit = minimize(self.residual, params, args=(GP, Eta))
+            params = [fit.params[par].value for par in fit.params]
+            param_errs = [fit.params[par].stderr for par in fit.params]
+            R2 = 1 - fit.chisqr / SStot
+            return params, param_errs, R2
         elif self.model == 'Carreau-Yasuda':
             params.add('eta_0', 100, vary=True, min=0)
             params.add('eta_inf', 1, vary=True, min=0)
             params.add('lbda', 5, vary=True, min=0)
             params.add('a', 1, vary=True, min=0)
             params.add('n', 1, vary=True, min=0)
-            fit = minimize(self.residual, params, args=(self.GP, self.Eta))
-            self.params = [fit.params[par].value for par in fit.params]
-            self.param_errs = [fit.params[par].stderr for par in fit.params]
+            fit = minimize(self.residual, params, args=(GP, Eta))
+            params = [fit.params[par].value for par in fit.params]
+            param_errs = [fit.params[par].stderr for par in fit.params]
             SSres = fit.chisqr
-            self.R2 = 1 - SSres / SStot
-            #print("Not accepted at this time, sorry. Has a weird TypeError I can't figure out.")
-            return
-
+            R2 = 1 - SSres / SStot
+            return params, param_errs, R2
 
     def residual(self, params, x, dataset):
         if self.model == 'Carreau':
@@ -249,10 +268,8 @@ class Fitter:
         elif self.model == 'Carreau-Yasuda':
             mod = self.fit_CarreauYasuda(x, params['eta_0'], params['eta_inf'], params['lbda'], params['a'],
                                          params['n'])
-
         resid = dataset - mod
         return resid
-
 
     def residual_lin(self, params, x, dataset):
         if type(x) == list:
@@ -261,6 +278,53 @@ class Fitter:
         resid = dataset - mod
         return resid
 
+    def automatic_lin_fitting_lm(self, save=True):
+        length = len(self.GP)
+        fittings = []
+
+        # Go through several possible ranges to fit, and fit them, then get the best fit
+        for first_point in range(0, length//3, 1):
+            for last_point in range(first_point + 3, length // 2, 1):
+                GP_arr = np.array(self.GP[first_point:last_point + 1])  # todo: check if this conversion is necessary
+                Eta_arr = np.array(self.Eta[first_point:last_point + 1])
+                try:
+                    #popt, pcov = curve_fit(self.fit_lin, GP_arr, Eta_arr, p0=(30, 0),
+                    #                   bounds=(0, [self.VISC_LIMIT, 0.0001]))
+                    params, param_errs, R2 = self.lm_curvefit(GP_arr, Eta_arr, do_lin=True)
+                except:  # todo: test here and find what types of errors can occur
+                    print(f'Error while using linear fit for file {self.filename}')
+                    print(traceback.format_exc())
+                    self.manip.logger(self.filename, 'Generic')
+
+                #perr = np.sqrt(np.diag(pcov))
+                fittings.append((first_point, last_point, params, param_errs, R2))
+
+        if self.settings.LIN_SORTING_METHOD == 'by_error':
+            fittings.sort(key=lambda x: np.log(x[3][0]))
+        elif self.settings.LIN_SORTING_METHOD == 'by_error_length':
+            fittings.sort(key=lambda x: np.log(x[2][1]) / (x[1] - x[0]))
+        elif self.settings.LIN_SORTING_METHOD == 'by_R2':
+            fittings.sort(key=lambda x: x[4])
+
+        self.l_first_point = fittings[0][0]
+        # todo: add variable names to first and last points of linear and nl
+        self.l_last_point = fittings[0][1]
+        self.int = fittings[0][2][1]
+        self.int_err = fittings[0][3][1]
+        self.l_R2 = fittings[0][4]
+        self.lin_done = True
+
+        if self.settings.DEBUG:
+            print('Debug: fittings_sorted: ', fittings)
+            print('Debug: a: ', self.int)
+            print('Debug: aerr: ', self.int_err)
+
+        if save:
+            self.manip.record_fit('linear', self.int, self.int_err, silent=False,
+                                  extra=f"{fittings[0][0]};{fittings[0][1]};")
+            # todo: check how this was done before, for consistency
+
+        return self.int, self.int_err, self.l_R2
 
     def automatic_lin_fitting(self, save=True):
         """Goes through all the files, fits them and selects the best fit according to two algorithms.
@@ -321,9 +385,75 @@ class Fitter:
     # todo: calculate R2 for all fittings and add it in the end to the class
     # todo: add options to sort by R2.
 
+    def automatic_nl_fitting_lm(self, save=True):
+        fittings = []
+        try:
+            max_range = len(self.GP) // self.max_fp
+        except ZeroDivisionError:
+            max_range = 1
+
+        for first_point in range(0, max_range, 1):
+            GP_arr = np.array(self.GP[first_point:])
+            Eta_arr = np.array(self.Eta[first_point:])
+            nonlinear_has_error = ''
+            try:
+                params, param_errs, R2 = self.lm_curvefit(GP_arr, Eta_arr, do_lin=False)
+            except FloatingPointError:  # todo: check if these exceptions work
+                print('!!!! Overflow detected on one of the parameters. Could not determine all parameters')
+                nonlinear_has_error = ';param_overflow_during_fitting'
+                self.manip.logger(self.filename, 'Overflow')
+            except RuntimeError:
+                print('!!!! Overflow detected on one of the parameters. Could not determine all parameters')
+                nonlinear_has_error = ';param_overflow_during_fitting'
+                self.manip.logger(self.filename, 'Overflow')
+            except OverflowError:
+                print('!!!! Overflow detected on one of the parameters.')
+                self.manip.logger(self.filename, 'Overflow')
+
+            fittings.append((first_point, params, param_errs, R2))
+
+        if self.settings.NL_SORTING_METHOD == 'eta_0':
+            fittings.sort(key=lambda x: x[2][0])
+        elif self.settings.NL_SORTING_METHOD == 'overall':
+            # fittings.sort(key=lambda x: x[2][0] + x[2][1] + x[2][2] + x[2][3])
+            fittings.sort(key=lambda x: sum(x[2]))  # sums the errors
+        elif self.settings.NL_SORTING_METHOD == 'R2':
+            fittings.sort(key=lambda x: x[3])
+        else:
+            raise ValueError(f'Could not understand the sorting method {self.settings.NL_SORTING_METHOD}')
+
+        self.nl_first_point = fittings[0][0]
+        self.params = fittings[0][1]
+        self.param_errs = fittings[0][2]
+        self.nl_R2 = fittings[0][3]
+
+        if save:  # todo: check here to return a good destination file
+            try:
+                self.manip.record_fit(
+                    self.filename, self.params[0],
+                    self.param_errs[0], silent=False,
+                    extra=f"{fittings[0][0]};{fittings[0][1]};nonlinear_auto_{self.settings.NL_FITTING_METHOD};"
+                          f"{nonlinear_has_error}", fdest_name=self.settings.NL_FITTING_METHOD + '.csv'
+                )
+            except UnboundLocalError:
+                print('Unable to write to file because the subroutine did not return the fitting parameters')
+                print(traceback.format_exc())
+                self.manip.record_fit(self.filename, 0, 0, extra=f'nonlinear_auto_{self.settings.NL_FITTING_METHOD};'
+                                                                 f'unable_to_find_viscosity',
+                                      fdest_name=self.settings.NL_FITTING_METHOD + '.csv')
+                self.manip.logger(self.filename, 'No Viscosity')
+
+        self.nl_done = True
+        return self.nl_first_point, self.params, self.param_errs, self.nl_R2
+
     def automatic_nl_fitting(self, save=True):
         fittings = []
-        for first_point in range(0, self.FIRST_POINT_MAX + 1, 1):
+        try:
+            max_range = len(self.GP) // self.max_fp
+        except ZeroDivisionError:
+            max_range = 1
+
+        for first_point in range(0, max_range, 1):
             GP_arr = np.array(self.GP[first_point:])
             Eta_arr = np.array(self.Eta[first_point:])
             nonlinear_has_error = ''
@@ -478,6 +608,7 @@ class Fitter:
             fig.text(TEXT_FILENAME_X, TEXT_Y, self.filename, size='small')
             fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
             fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_text, size='small')
+            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, f'R2 = {round(self.nl_R2, 2)}', color='red', size='small')
             # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
             # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
             #fig.set_size_inches(6, 4)  # todo: check if this is still necessary
@@ -500,6 +631,7 @@ class Fitter:
             fig.text(TEXT_FILENAME_X, TEXT_Y, self.filename, size='small')
             fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
             fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_text, size='small')
+            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, f'R2 = {round(self.l_R2, 2)}', color='red', size='small')
             # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
             # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
             #fig.set_size_inches(6, 4)  # todo: check if this is still necessary
@@ -511,7 +643,7 @@ class Fitter:
             print('Figure saved.')
         if not self.settings.INLINE_GRAPHS and self.settings.PLOT_GRAPHS:
             plt.draw()
-            plt.pause(0.5)
+            plt.pause(self.wait)
             #plt.clf()
             plt.close(fig)
         elif self.settings.PLOT_GRAPHS:
@@ -656,9 +788,9 @@ def test():
     settings.NL_FITTING_METHOD = 'Carreau-Yasuda'
     filename = 'CF_Sac50-3--0.csv'
     fit = Fitter(filename, settings, do_fit=False)
-    fit.lm_curvefit()
-    print(fit.model, fit.R2, *fit.params)
-    #fit.plot_error_graphs()
+    fit.automatic_nl_fitting_lm(save=True)
+    print(fit.model, fit.nl_R2, *fit.params)
+
     return fit
 
 

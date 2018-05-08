@@ -5,7 +5,9 @@ INLINE_GRAPHS=False
 # Plot graphs after fitting, with error propagation? Slows down the process greatly.
 PLOT_GRAPHS=True
 # Save graphs after fitting? Useless if PLOT_GRAPHS is set to False
-SAVE_GRAPHS=True
+SAVE_GRAPHS=False
+# When plotting, time it waits until the next plot is shown, in seconds
+WAIT=5
 # Treat all files in folder?
 TREAT_ALL=True
 # Extension of files to look for
@@ -17,8 +19,8 @@ PREV_EXTRACTED=True
 # Perform linear fit?
 DO_LIN=True
 # Sorting method of the automatic linear method.
-# Can be 'by_error', minimizing the error, or 'by_error_length', which minimizes the error divided by the total number of points used.
-LIN_SORTING_METHOD=by_error
+# Can be 'by_error', minimizing the error, 'by_error_length', which minimizes the error divided by the total number of points used, 'by_R2', which minimizes R squared.
+LIN_SORTING_METHOD=by_error_length
 # Set to True if you want the linear fitting to be done automatically. False, if to be done manually.
 AUTO_LIN=True
 
@@ -27,10 +29,14 @@ AUTO_LIN=True
 DO_NL=True
 # Fitting method. 'Carreau', 'Cross', 'Carreau-Yasuda'
 NL_FITTING_METHOD=Carreau
-# Can be 'overall', minimizing the error of all parameters, or 'eta_0', minimizing the error of only this parameter.
-NL_SORTING_METHOD=overall
+# Can be 'overall', minimizing the error of all parameters,  'eta_0', minimizing the error of only this parameter, or 'R2'.
+NL_SORTING_METHOD=R2
 # Set to True if you want the non linear fitting to be done automatically
 AUTO_NL=True
+# Set to true if the first point should be fixed during fitting
+FIXED_FP_NL=False
+# If FIXED_FP_NL is true, how much can it travel? This must be in terms of theinverse of the length, that is, length/MAX_FP_NL. 1 would be the entire curve (notrecommended. 2 would be up to half the curve, etc.
+MAX_FP_NL=3
 
 ##### Debug #####
 # Show debug messages
