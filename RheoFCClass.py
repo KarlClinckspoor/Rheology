@@ -1,3 +1,5 @@
+import matplotlib as mpl
+mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 import glob
 import numpy as np
@@ -142,7 +144,7 @@ class Fitter:
     @staticmethod
     def fit_CarreauYasuda(GP, eta_0, eta_inf, lbda, a, n):
         """Carreau-Yasuda: eta(GP) = eta_inf + (eta_0 - eta_inf)(1+(lambda * GP)**a)**((n-1)/a)"""
-        return eta_inf + (eta_0 - eta_inf) * (1 + (lbda * GP) ** a) ** ((n - 1) / a)
+        return eta_inf + (eta_0 - eta_inf) / (1 + (lbda * GP) ** a) ** ((n - 1) / a)
 
     @staticmethod
     def fit_lin(x, a, b):
@@ -213,6 +215,7 @@ class Fitter:
 
         return CY_val, CY_err
 
+    # todo: alterar o termo int para outro valor para impedir que haja um clash.
     def lm_curvefit(self, GP, Eta, do_lin=False):
         params = Parameters()
         SStot = sum((Eta - np.mean(Eta)) ** 2)
@@ -561,7 +564,16 @@ class Fitter:
 
         return fittings
 
+    # todo: use AnchoredText instead of text to write the fitting results;
+    # from mpl_toolkits.axes_grid.anchored_artists import AnchoredText
+    # at = AnchoredText("Figure 1a",
+    #                   prop=dict(size=8), frameon=True,
+    #                   loc=2,
+    #                   )
+    # at.patch.set_boxstyle("round,pad=0.,rounding_size=0.2")
+    # ax.add_artist(at)
     def plot_error_graphs(self): # todo: If it has both plots, make them side by side
+        from mpl_toolkits.axes_grid.anchored_artists import AnchoredText
         TEXT_FILENAME_X = 0.1
         TEXT_PARAMS_X = 0.3
         TEXT_Y = 0.98
@@ -604,15 +616,9 @@ class Fitter:
             model_param_names = 'Model: ' + self.model + ' Params: ' + self.param_names
             param_text = " ".join([str(round(par, 2)) + '+/-' + str(round(err, 2))
                                    for par, err in zip(self.params, self.param_errs)])
-
-            fig.text(TEXT_FILENAME_X, TEXT_Y, self.filename, size='small')
-            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
-            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_text, size='small')
-            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, f'R2 = {round(self.nl_R2, 2)}', color='red', size='small')
-            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
-            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
-            #fig.set_size_inches(6, 4)  # todo: check if this is still necessary
-            TEXT_FILENAME_X = 0.5  # Changes it to half in case a linear plot is done.
+            total_text = f'{self.filename}\n{model_param_names}\n{param_text}\n$R^2$={round(self.nl_R2, 2)}'
+            anchored_text = AnchoredText(total_text, loc=3, frameon=True, prop={'fontsize':'small'})
+            axn.add_artist(anchored_text)
 
         if self.lin_done:
             axl.set_xscale('log')
@@ -625,18 +631,14 @@ class Fitter:
                              color='red')  # todo: check this function
             else:
                 axl.annotate(str(self.l_last_point), (self.GP[self.l_last_point], self.Eta[self.l_last_point]), color='red')
+            
             model_param_names = 'Model: Linear. Params: Intercept'
             param_text = f"int = {self.int}+/-{self.int_err}"
+            total_text = f'{self.filename}\n{model_param_names}\n{param_text}\n$R^2$={round(self.l_R2, 2)}'
+            anchored_text = AnchoredText(total_text, loc=3, frameon=True, prop={'fontsize':'small'})
+            axl.add_artist(anchored_text)
 
-            fig.text(TEXT_FILENAME_X, TEXT_Y, self.filename, size='small')
-            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.030, model_param_names, size='small')
-            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_text, size='small')
-            fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, f'R2 = {round(self.l_R2, 2)}', color='red', size='small')
-            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.060, param_values, size='small')
-            # fig.text(TEXT_FILENAME_X, TEXT_Y - 0.090, param_errors, size='small')
-            #fig.set_size_inches(6, 4)  # todo: check if this is still necessary
-
-        #fig.tight_layout()
+        plt.tight_layout()
 
         if self.settings.SAVE_GRAPHS:
             fig.savefig(self.filename[:-4] + '.png')
@@ -878,5 +880,5 @@ def main():
         #         log.write(traceback.format_exc())
 
 if __name__ == '__main__':
-    #fit = test()
-    main()
+    fit = test()
+    #main()
